@@ -4,9 +4,6 @@
 
 Contact for Code of Conduct issues or inquires:  operations@lfenergy.org
 
-[Ideally list two different individuals above (not a generic mailing list) as someone submitting a Code of Conduct complaint will want to know exactly who is receiving the complaint. We recommend two individuals in the case one of the individuals is the subject of or directly involved in the subject of a complaint.]
-
-
 ## License Acceptance
 
 Per Community Specification License 1.0 Section 2.1.3.3, Licensees may indicate their acceptance of the Community Specification License by issuing a pull request to the Specification’s repository’s Notice.md file, including the Licensee’s name, authorized individuals' names, and repository system identifier (e.g. GitHub ID), and specification version.
