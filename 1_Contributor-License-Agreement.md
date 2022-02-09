@@ -2,11 +2,11 @@
 
 By making a Contribution to this repository, I agree to the terms of the following documents:
 
-(a) [License](https://github.com/carbon-data-specification/Power-Systems-Data/blob/main/License.md)
+(a) [License](https://github.com/carbon-data-specification/Customer-Data/blob/main/License.md)
 
 (b) Community Specification [Governance](https://github.com/carbon-data-specification/the_way_we_work/blob/main/Governance.md) Policy
 
-(c) Community Specification [Contribution](https://github.com/carbon-data-specification/Power-Systems-Data/blob/main/CONTRIBUTING.md)  Policy
+(c) Community Specification [Contribution](https://github.com/carbon-data-specification/Customer-Data/blob/main/CONTRIBUTING.md)  Policy
 
 (d) Community Specification [Code of Conduct](https://github.com/carbon-data-specification/the_way_we_work/blob/main/Code_of_Conduct.md) 
 
