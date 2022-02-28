@@ -155,6 +155,68 @@ etc.)
 * Apps and devices that monitor grid conditions and control DERs and IoT prevent additional
 carbon-intensive generation from coming online (e.g. marginal emissions).
 
-## What use cases are not in scope <a id="not-in-scope" href="#not-in-scope" class="permalink">🔗</a>
 
-* TODO: discuss at working group meeting
+## Use Case 4: Building Benchmarking <a id="use-case-benchmarking" href="#use-case-benchmarking" class="permalink">🔗</a>
+
+Municipalities and governments are increasingly requiring that building owners submit
+whole-building energy usage information in order to do carbon accounting and measure
+building energy efficiency for their jurisdiction.
+
+#### Needs:
+
+* **Standardized Whole-Building Data Formats:**
+Whole-building usage data needed to perform building benchmarking calculations
+is similar to Use Case 1: Carbon Accounting, only usage can be aggregated over
+multiple usage points and be provided as a single combined reading. Thus,
+the specifications to address benchmarkings must consider how to appropriately
+define how data is being aggregated, and where necessary provide meta data
+on the underlying individual components that were used to create the whole-building
+aggregate usage values.
+
+* **Streamlined Data Request and Access Procedures:**
+While individual customer data access will be frequently achieved by the
+user requesting the data directly sending a data request to the customer,
+benchmarking data requests are most likely going to data requests submitted
+directly to the utility for approval. So the typical recipient and approver
+of a "data request" changes for this Use Case. Thus, specifications that address
+this use case must consider how to best structure user data requests submissions
+directly to utilities rather than individual customers. Additionally,
+specifications must consider that when a data request is approved, what
+data access procedures will be used, and will they be different from data
+access procedures from the other Use Cases.
+
+* **Privacy and Consent Requirements:**
+While individual customer data access frequently requires first obtaining
+consent from the customer. Jurisdictions requiring whole-building data access
+often specify thresholds over which individual customer consent is not
+required to obtain whole-building usage data (e.g. if any individual
+customer's usage is no more than 15% of the whole-building usage). If
+whole-building usage is under these thresholds, however, individual customer
+consent will still be required for each building tenant. Thus, specifications
+addressing this use case must consider how to incorporate customer consent
+thresholds for whole-building access, and like the other use cases, the
+process by which users may request and obtain customer consent when required.
+
+#### Examples of users in this use case:
+
+* Cities and regions with building benchmarking mandates (
+[Fort Collins Building Energy and Water Scoring](https://www.fcgov.com/bews/),
+[Atlanta Building Efficiency](https://atlantabuildingefficiency.com/),
+[California Building Energy Benchmarking Program](https://www.energy.ca.gov/programs-and-topics/programs/building-energy-benchmarking-program),
+etc.)
+
+* Property owners wanting to benchmark their buildings achieve green and efficiency ratings (
+[Energy Star](https://www.energystar.gov/buildings),
+[LEED](https://www.usgbc.org/leed),
+etc.)
+
+
+## Use cases NOT in scope for this working group <a id="not-in-scope" href="#not-in-scope" class="permalink">🔗</a>
+
+* Live grid operations and controls (actual demand response signaling for equipment, solar inverter control and generation curtailment, EV charging shut-off signals, etc.)
+
+* Financial transactions and settlements (customer utility bill payments, load management program participation financial payouts and settlement, etc.)
+
+* Modifying customer accounts (changing a customer's rate plan, starting or stopping utility services, etc.)
+
+* Providing data access to region-level datasets (ISO load and generation curves, capacity market live pricing data, etc.)
