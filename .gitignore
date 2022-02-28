@@ -1,0 +1,8 @@
+# Temporary files
+\#*\#
+*~
+
+# Jekyll website
+docs/_site
+docs/Gemfile.lock
+docs/.jekyll-cache
