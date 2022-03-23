@@ -30,6 +30,16 @@ group will establish standardized data formats and access procedures so that
 data can be easily obtained, analyzed, and combined from multiple sources
 (e.g. companies with buildings in multiple utility territories).
 
+* **Standardized Customer Datasets:**
+In order to perform the needed calculations for carbon accounting and
+other Use Cases, a comprehensive dataset with the appropriate data fields
+must be provided. Which data fields, granularity, and time periods are
+needed are highly use-case dependent, but without requirements to follow,
+utilities may not provide access to adequate datasets to satisfy an intended
+use case's needs. Thus, specifications to address this use case must consider
+what specific datasets are required for common use cases in addition to how
+the data should be formatted and accessed.
+
 * **Privacy, Consent, and Security:**
 Since carbon accounting is typically for specific entities,
 the actual utility data of that specific entity is required to perform
