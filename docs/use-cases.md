@@ -174,6 +174,10 @@ etc.)
 * Apps and devices that monitor grid conditions and control DERs and IoT prevent additional
 carbon-intensive generation from coming online (e.g. avoided emissions).
 
+* Utilities needing to standardize customer data access and sharing across multiple divisions
+within the utility itself, between internal vendors, or with utility program implementers
+(energy efficiency rebate programs, building electrification initiatives, etc.).
+
 
 ## Use Case 4: Building Benchmarking <a id="use-case-benchmarking" href="#use-case-benchmarking" class="permalink">🔗</a>
 
