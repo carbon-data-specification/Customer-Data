@@ -75,7 +75,7 @@ Often, organizations with decarbonization targets (see [Use Case 1: Carbon Accou
 will evaluate projects that may positively impact their carbon emissions. These projects
 can range from physical locally (e.g. installing solar or EV charging) and remote (e.g.
 building renewable generation projects via wholesale power purchase agreements), to virtual
-direct (e.g. avoiding marginal emissions by managing building usage dynamically) or financial
+direct (e.g. avoided emissions by managing building usage dynamically) or financial
 (e.g. switching rate plans to carbon free sources or community solar).
 
 #### Needs:
@@ -153,7 +153,7 @@ dataset.
 etc.)
 
 * Apps and devices that monitor grid conditions and control DERs and IoT prevent additional
-carbon-intensive generation from coming online (e.g. marginal emissions).
+carbon-intensive generation from coming online (e.g. avoided emissions).
 
 
 ## Use Case 4: Building Benchmarking <a id="use-case-benchmarking" href="#use-case-benchmarking" class="permalink">🔗</a>
