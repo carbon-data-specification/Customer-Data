@@ -151,6 +151,7 @@ dataset.
 #### Examples of users in this use case:
 
 * Apps and devices that participate in demand response programs (
+[FERC Order 2222](https://ferc.gov/media/ferc-order-no-2222-fact-sheet),
 [CEC Load Management Rulemaking](https://www.energy.ca.gov/proceedings/energy-commission-proceedings/load-management-rulemaking),
 [NYISO Demand Response](https://www.nyserda.ny.gov/All-Programs/Energy-Storage/Energy-Storage-for-Your-Business/Demand-Response-Programs),
 etc.)
