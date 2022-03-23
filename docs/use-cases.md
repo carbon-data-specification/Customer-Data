@@ -242,3 +242,5 @@ etc.)
 * Modifying customer accounts (changing a customer's rate plan, starting or stopping utility services, etc.)
 
 * Providing data access to region-level datasets (ISO load and generation curves, capacity market live pricing data, etc.)
+
+* Disaggregation and analysis methods for aggregate datasets, either for single meter disaggregation (e.g. home appliance enumeration) or multi-meter analysis (e.g. whole-building-to-individual-tenant)
