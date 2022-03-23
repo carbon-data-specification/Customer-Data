@@ -183,10 +183,9 @@ on the underlying individual components that were used to create the whole-build
 aggregate usage values.
 
 * **Streamlined Data Request and Access Procedures:**
-While individual customer data access will be frequently achieved by the
-user requesting the data directly sending a data request to the customer,
-benchmarking data requests are most likely going to data requests submitted
-directly to the utility for approval. So the typical recipient and approver
+Unlike individual customer data requests, which are typically sent to and
+approved by individual customers, benchmarking data requests are typically
+sent to and approved by the utility directly. This means the dynamics and requirements
 of a "data request" changes for this Use Case. Thus, specifications that address
 this use case must consider how to best structure user data requests submissions
 directly to utilities rather than individual customers. Additionally,
