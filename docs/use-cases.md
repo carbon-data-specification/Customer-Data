@@ -156,6 +156,11 @@ dataset.
 [NYISO Demand Response](https://www.nyserda.ny.gov/All-Programs/Energy-Storage/Energy-Storage-for-Your-Business/Demand-Response-Programs),
 etc.)
 
+* DER aggregators that manage collections of distributed resources and participate in grid events and markets (
+[OhmConnect](https://www.ohmconnect.com/),
+[Enel X](https://www.enelx.com/n-a/en),
+etc.)
+
 * Apps and devices that monitor grid conditions and control DERs and IoT prevent additional
 carbon-intensive generation from coming online (e.g. avoided emissions).
 
