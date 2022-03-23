@@ -51,7 +51,7 @@ to allow for easy, streamlined customer utility data access.
 
 #### Examples of users in this use case:
 
-* Platforms that asses carbon emissions for enterprises (
+* Platforms that assess carbon emissions for enterprises (
 [WattCarbon](https://www.wattcarbon.com/),
 [FlexiDAO](https://www.flexidao.com/),
 [Microsoft Cloud for Sustainability](https://www.microsoft.com/en-us/sustainability),
