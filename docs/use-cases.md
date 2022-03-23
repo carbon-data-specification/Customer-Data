@@ -110,6 +110,9 @@ on carbon impact or customer savings (demand charge reduction via batteries, dyn
 * Platforms and firms that analyze customer rate plan options to maximize carbon impact (community solar,
 direct power purchase agreements, etc.)
 
+* Negative emissions projects (e.g. direct air capture) that need to monitor and measure their customer's
+net emissions related to the project.
+
 
 ## Use Case 3: Distributed Grid Flexibility <a id="use-case-distributed-flexibility" href="#use-case-distributed-flexibility" class="permalink">🔗</a>
 
