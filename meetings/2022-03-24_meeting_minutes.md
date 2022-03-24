@@ -14,7 +14,7 @@
 
 ## Attendees
 * Daniel Roesler (UtilityAPI) (Maintainer)
-* Joelle (Apple)
+* Joelle (public)
 * McGee (WattCarbon)
 * Hallie (Google)
 * Steve (WattCarbon)
