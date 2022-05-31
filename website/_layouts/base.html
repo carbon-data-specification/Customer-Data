@@ -71,7 +71,7 @@
                                 class="nav-link{% if page.nav == 'home' %} active text-decoration-underline{% endif %}"
                                 {% if page.nav == 'home' %}aria-current="page"{% endif %}
                                 href="{{ '/' | relative_url }}"
-                                >About</a>
+                                >Home</a>
                         </li>
                         <li class="nav-item">
                             <a
@@ -81,9 +81,11 @@
                                 >Use Cases</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="https://github.com/carbon-data-specification/Customer-Data/tree/main/specifications" target="_blank"
-                                >Specifications
-                                <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
+                            <a
+                                class="nav-link{% if page.nav == 'specs' %} active text-decoration-underline{% endif %}"
+                                {% if page.nav == 'use_cases' %}aria-current="page"{% endif %}
+                                href="{{ '/specs' | relative_url }}"
+                                >Specifications</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="https://github.com/carbon-data-specification/Customer-Data/tree/main/meetings" target="_blank"
@@ -96,7 +98,7 @@
         </nav>
 
         <!-- Content -->
-        <div role="main" class="container pt-5 pb-5">
+        <div role="main" class="container pt-3 pb-5">
             <div class="row">
                 <div class="col">
                     {{ content }}
@@ -119,6 +121,10 @@
                             <li>
                                 <a href="{{ '/use-cases' | relative_url }}"
                                     >Use Cases</a>
+                            </li>
+                            <li>
+                                <a href="{{ '/specs' | relative_url }}"
+                                    >Specifications</a>
                             </li>
                             <li>
                                 <a href="https://github.com/carbon-data-specification/Customer-Data" target="_blank"

@@ -33,11 +33,11 @@ We've also made a list of what data and functionality is specifically [not in sc
 
 ## Specifications
 
-These are the official [specifications](https://github.com/carbon-data-specification/Customer-Data/tree/main/specifications) written by this working group.
+These are the official [specifications](/specs) written by this working group.
 
-* `CDSC-WG1-01` - Coming soon!
+{% include spec_list.md %}
 
-## Resources
+## Get Involved
 
 See our git repository for the actual specifications under development:
 [https://github.com/carbon-data-specification/Customer-Data](https://github.com/carbon-data-specification/Customer-Data)
