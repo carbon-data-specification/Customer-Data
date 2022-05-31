@@ -57,10 +57,15 @@ jobs:
           cd ${{ github.workspace }}/main-branch/website
           bundle exec jekyll build -d ${{ github.workspace }}/gh-pages-branch
 
-      - name: Remove default domain for non-production builds
-        if: ${{ github.repository != 'carbon-data-specification/Customer-Data' }}
+      - name: Maintainer domain
+        if: ${{ github.repository == 'daniel-utilityapi/Customer-Data' }}
         run: |
-          rm ${{ github.workspace }}/gh-pages-branch/CNAME
+          echo -n "cdsc-wg1-maintainer-branch.utilityapi.com" > ${{ github.workspace }}/gh-pages-branch/CNAME
+
+      - name: Production domain
+        if: ${{ github.repository == 'carbon-data-specification/Customer-Data' }}
+        run: |
+          echo -n "customerdata.carbondataspec.org" > ${{ github.workspace }}/gh-pages-branch/CNAME
 
       - name: Push static site to gh-pages branch
         run: |
