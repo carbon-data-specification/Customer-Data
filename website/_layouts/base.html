@@ -46,6 +46,21 @@
             </defs>
         </svg>
 
+        <!-- Non-production Warning -->
+        <div id="non-prod-warning" class="bg-danger text-light text-center p-2 d-none">
+            <strong>
+                WARNING: THIS IS A DEVELOPMENT VERSION OF THE CDSC-WG1 WEBSITE
+                <span class="d-inline-block">
+                    (this message does not appear on carbondataspec.org)
+                </span>
+            </strong>
+        </div>
+        <script>
+            if (window.location.hostname.indexOf("carbondataspec.org") === -1) {
+                document.getElementById("non-prod-warning").classList.remove("d-none");
+            }
+        </script>
+
         <!-- Header -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
