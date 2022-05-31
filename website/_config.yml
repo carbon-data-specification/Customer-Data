@@ -3,3 +3,6 @@ exclude:
   - Gemfile.lock
   - README.md
   - CNAME
+
+# base url for specification source links (added during website build)
+#github_specs_base_url: "https://github.com/carbon-data-specification/Customer-Data/blob/main/specifications"
