@@ -4,7 +4,7 @@ nav: use_cases
 title: Use Cases
 meta_description: What are the use cases that the Customer Data specifications this working group is trying to address?
 ---
-[Home](../) / Use Cases
+[Home]({{ "/" | relative_url }}) / Use Cases
 
 # Use Cases
 

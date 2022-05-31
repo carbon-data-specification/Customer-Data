@@ -35,6 +35,7 @@ jobs:
           # set source and website directories
           export WEBSITE_DIR="${{ github.workspace }}/main-branch/website/_includes/spec_copies"
           export SOURCE_DIR="${{ github.workspace }}/main-branch/specifications"
+          
           # remove any existing placeholder files
           find \
             $WEBSITE_DIR \
@@ -42,6 +43,7 @@ jobs:
             -path "$WEBSITE_DIR/placeholder_*.md" \
           | xargs -I% \
             rm %
+          
           # copy original files to website directory
           find \
             $SOURCE_DIR \
@@ -51,18 +53,28 @@ jobs:
             -printf "%f\n" \
           | xargs -I% \
             cp $SOURCE_DIR/% $WEBSITE_DIR/placeholder_%
+          
+          # update specifications source base url with current repo and branch
+          echo "github_specs_base_url: \"https://github.com/${{ github.repository }}/blob/${{ github.ref_name }}/specifications\"" \
+            >> ${{ github.workspace }}/main-branch/website/_config.yml
+          
+          # default base url is root of domain
+          echo "baseurl: /" \
+            >> ${{ github.workspace }}/main-branch/website/_config.yml
+
+      - name: Non-production builds use Github Page's default base url (/Customer-Data/)
+        if: ${{ github.repository != 'carbon-data-specification/Customer-Data' }}
+        run: |
+          sed -i \
+            's|baseurl: \/|baseurl: /Customer-Data/|g' \
+            ${{ github.workspace }}/main-branch/website/_config.yml
 
       - name: Build static website
         run: |
           cd ${{ github.workspace }}/main-branch/website
           bundle exec jekyll build -d ${{ github.workspace }}/gh-pages-branch
 
-      - name: Maintainer domain
-        if: ${{ github.repository == 'daniel-utilityapi/Customer-Data' }}
-        run: |
-          echo -n "cdsc-wg1-maintainer-branch.utilityapi.com" > ${{ github.workspace }}/gh-pages-branch/CNAME
-
-      - name: Production domain
+      - name: Set production domain
         if: ${{ github.repository == 'carbon-data-specification/Customer-Data' }}
         run: |
           echo -n "customerdata.carbondataspec.org" > ${{ github.workspace }}/gh-pages-branch/CNAME
