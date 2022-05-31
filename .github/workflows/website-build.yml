@@ -4,7 +4,7 @@ on:
     branches:
       - main
 jobs:
-  SomeTestBuild:
+  WebsiteBuild:
     runs-on: ubuntu-latest
 
     env:
@@ -56,6 +56,11 @@ jobs:
         run: |
           cd ${{ github.workspace }}/main-branch/website
           bundle exec jekyll build -d ${{ github.workspace }}/gh-pages-branch
+
+      - name: Remove default domain for non-production builds
+        if: ${{ github.repository != 'carbon-data-specification/Customer-Data' }}
+        run: |
+          rm ${{ github.workspace }}/gh-pages-branch/CNAME
 
       - name: Push static site to gh-pages branch
         run: |

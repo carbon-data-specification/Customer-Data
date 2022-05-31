@@ -20,22 +20,23 @@ in order to facilitate carbon emissions calculations and decarbonization efforts
 
 ## Use Cases
 
-We have defined several broad categories of [use cases](/use-cases) we will focus on addressing,
+We have defined several broad categories of [use cases](./use-cases) we will focus on addressing,
 along with what customer data types and functionalities will need to be specified to accommodate
 those use cases.
 
-* `Use Case 1` - [Carbon Accounting](/use-cases#use-case-carbon-accounting)
-* `Use Case 2` - [Decarbonization Projects](/use-cases#use-case-decarbonization-projects)
-* `Use Case 3` - [Distributed Grid Flexibility](/use-cases#use-case-distributed-flexibility)
-* `Use Case 4` - [Building Benchmarking](/use-cases#use-case-benchmarking)
+* `Use Case 1` - [Carbon Accounting](./use-cases#use-case-carbon-accounting)
+* `Use Case 2` - [Decarbonization Projects](./use-cases#use-case-decarbonization-projects)
+* `Use Case 3` - [Distributed Grid Flexibility](./use-cases#use-case-distributed-flexibility)
+* `Use Case 4` - [Building Benchmarking](./use-cases#use-case-benchmarking)
 
-We've also made a list of what data and functionality is specifically [not in scope](/use-cases#not-in-scope).
+We've also made a list of what data and functionality is specifically [not in scope](./use-cases#not-in-scope).
 
 ## Specifications
 
-These are the official [specifications](/specs) written by this working group.
+These are the official [specifications](./specs) written by this working group.
 
-{% include spec_list.md %}
+* `CDSC-WG1-01` - Server Metadata [[Overview](./specs/cdsc-wg1-01/overview)] [[Specification](./specs/cdsc-wg1-01)] `(in progress)`
+* `CDSC-WG1-*` - Additional specifications will be added in the future
 
 ## Get Involved
 
