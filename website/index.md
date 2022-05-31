@@ -13,14 +13,32 @@ part of the
 [Carbon Data Specification Consortium (CDSC)](https://www.lfenergy.org/projects/carbon-data-specification-cds/),
 an [LF Energy](https://www.lfenergy.org/) project.
 
+## Scope
+
 This working group focuses on writing free, open specifications for providing utility customer data access,
 in order to facilitate carbon emissions calculations and decarbonization efforts.
 
-The scope of these specifications include, but are not limited to:
+## Use Cases
 
-* Metering consumption and production data
-* Account and bill data needed for project analysis
-* Authorization and consent processes
+We have defined several broad categories of [use cases](./use-cases) we will focus on addressing,
+along with what customer data types and functionalities will need to be specified to accommodate
+those use cases.
+
+* `Use Case 1` - [Carbon Accounting](./use-cases#use-case-carbon-accounting)
+* `Use Case 2` - [Decarbonization Projects](./use-cases#use-case-decarbonization-projects)
+* `Use Case 3` - [Distributed Grid Flexibility](./use-cases#use-case-distributed-flexibility)
+* `Use Case 4` - [Building Benchmarking](./use-cases#use-case-benchmarking)
+
+We've also made a list of what data and functionality is specifically [not in scope](./use-cases#not-in-scope).
+
+## Specifications
+
+These are the official [specifications](./specs) written by this working group.
+
+* `CDSC-WG1-01` - Server Metadata [[Overview](./specs/cdsc-wg1-01/overview)] [[Specification](./specs/cdsc-wg1-01)] `(in progress)`
+* `CDSC-WG1-*` - Additional specifications will be added in the future
+
+## Get Involved
 
 See our git repository for the actual specifications under development:
 [https://github.com/carbon-data-specification/Customer-Data](https://github.com/carbon-data-specification/Customer-Data)
