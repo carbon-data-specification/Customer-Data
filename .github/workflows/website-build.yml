@@ -1,0 +1,77 @@
+name: Website Build
+on:
+  push:
+    branches:
+      - main
+jobs:
+  WebsiteBuild:
+    runs-on: ubuntu-latest
+
+    env:
+      BUNDLE_GEMFILE: ${{ github.workspace }}/main-branch/website/Gemfile
+
+    steps:
+
+      - name: Checkout main branch
+        uses: actions/checkout@v3
+        with:
+          ref: main
+          path: main-branch
+
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+          path: gh-pages-branch
+
+      - name: Setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+          bundler-cache: true
+
+      - name: Replace placeholder files with original files
+        run: |
+          # set source and website directories
+          export WEBSITE_DIR="${{ github.workspace }}/main-branch/website/_includes/spec_copies"
+          export SOURCE_DIR="${{ github.workspace }}/main-branch/specifications"
+          # remove any existing placeholder files
+          find \
+            $WEBSITE_DIR \
+            -type f \
+            -path "$WEBSITE_DIR/placeholder_*.md" \
+          | xargs -I% \
+            rm %
+          # copy original files to website directory
+          find \
+            $SOURCE_DIR \
+            -type f \
+            -path "$SOURCE_DIR/*.md" \
+            -not -path "*/README.md" \
+            -printf "%f\n" \
+          | xargs -I% \
+            cp $SOURCE_DIR/% $WEBSITE_DIR/placeholder_%
+
+      - name: Build static website
+        run: |
+          cd ${{ github.workspace }}/main-branch/website
+          bundle exec jekyll build -d ${{ github.workspace }}/gh-pages-branch
+
+      - name: Maintainer domain
+        if: ${{ github.repository == 'daniel-utilityapi/Customer-Data' }}
+        run: |
+          echo -n "cdsc-wg1-maintainer-branch.utilityapi.com" > ${{ github.workspace }}/gh-pages-branch/CNAME
+
+      - name: Production domain
+        if: ${{ github.repository == 'carbon-data-specification/Customer-Data' }}
+        run: |
+          echo -n "customerdata.carbondataspec.org" > ${{ github.workspace }}/gh-pages-branch/CNAME
+
+      - name: Push static site to gh-pages branch
+        run: |
+          cd ${{ github.workspace }}/gh-pages-branch
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add -A
+          git commit -m "[bot] Github Pages build"
+          git push
