@@ -10,7 +10,7 @@ meta_description: Linux Foundation Energy - Carbon Data Specification Consortium
 
 Looking for a more human-readable summary of this specification? Check out our [overview]({{ "/specs/cdsc-wg1-01/overview" | relative_url }}).
 
-Below is a rendering of the original specification [source]({{ site.github_specs_base_url }}/cdsc-wg1-01.md).
+Below is a rendering of the original specification source: [{{ site.github_specs_base_url }}/cdsc-wg1-01.md]({{ site.github_specs_base_url }}/cdsc-wg1-01.md)
 
 ---
 
