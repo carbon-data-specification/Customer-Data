@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="What are the use cases that the Customer Data specifications this working group is trying to address?">
+        <link rel="icon" type="image/png" href="/assets/favicon.png">
+        <meta name="robots" content="noindex, nofollow"/>
+        <title>CDSC-WG1 - Use Cases</title>
+        <link href="/assets/bootstrap-5.1.3-dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            /* Permalink styling */
+            .permalink {
+                text-decoration:none;
+                font-size: 60%;
+                display: inline-block;
+                vertical-align: top;
+                padding-top: 0.4em;
+            }
+            /* SVG icons (based on https://github.com/diafygi/svg-font-to-svg-sprite-converter)
+               Example (put "svgicons: fa-link, fa-plus-circle" in front matter):
+               <svg class="svgicon"><use href="#fa-link"/></svg>
+               <svg class="svgicon"><use href="#fa-plus-circle"/></svg>
+            */
+            #svgicon-defs{
+                display: none;
+            }
+            .svgicon {
+                overflow: visible !important;
+                height: 0.7em;
+                width: 0.7em;
+                fill:currentColor;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- SVG Icons (see comment in css above on how to use) -->
+        <svg id="svgicon-defs" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <symbol id="fa-external-link" viewBox="0 0 1792 1792" overflow="visible">
+    <path d="M1408 928v320q0 119 -84.5 203.5t-203.5 84.5h-832q-119 0 -203.5 -84.5t-84.5 -203.5v-832q0 -119 84.5 -203.5t203.5 -84.5h704q14 0 23 9t9 23v64q0 14 -9 23t-23 9h-704q-66 0 -113 47t-47 113v832q0 66 47 113t113 47h832q66 0 113 -47t47 -113v-320q0 -14 9 -23t23 -9h64q14 0 23 9t9 23zM1792 64v512q0 26 -19 45t-45 19t-45 -19l-176 -176l-652 652q-10 10 -23 10t-23 -10l-114 -114q-10 -10 -10 -23t10 -23l652 -652l-176 -176q-19 -19 -19 -45t19 -45t45 -19h512q26 0 45 19t19 45z"></path>
+</symbol>
+
+                
+                
+            </defs>
+        </svg>
+
+        <!-- Non-production Warning -->
+        <div id="non-prod-warning" class="bg-danger text-light text-center p-2 d-none">
+            <strong>
+                WARNING: THIS IS A DEVELOPMENT VERSION OF THE CDSC-WG1 WEBSITE
+                <span class="d-inline-block">
+                    (this message does not appear on carbondataspec.org)
+                </span>
+            </strong>
+        </div>
+        <script>
+            if (window.location.hostname.indexOf("carbondataspec.org") === -1) {
+                document.getElementById("non-prod-warning").classList.remove("d-none");
+            }
+        </script>
+
+        <!-- Header -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a
+                    class="navbar-brand"
+                    href="/"
+                    >CDSC-WG1</a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#header"
+                    aria-controls="header"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="header">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                
+                                href="/"
+                                >Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                class="nav-link active text-decoration-underline"
+                                aria-current="page"
+                                href="/use-cases"
+                                >Use Cases</a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                aria-current="page"
+                                href="/specs"
+                                >Specifications</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/carbon-data-specification/Customer-Data/tree/main/meetings" target="_blank"
+                                >Meeting Minutes
+                                <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Content -->
+        <div role="main" class="container pt-3 pb-5">
+            <div class="row">
+                <div class="col">
+                    <p><a href="../">Home</a> / Use Cases</p>
+
+<h1 id="use-cases">Use Cases</h1>
+
+<p>These are the use cases that this working group is writing specifications to address.</p>
+
+<h2 id="use-case-1-carbon-accounting-">Use Case 1: Carbon Accounting <a id="use-case-carbon-accounting" href="#use-case-carbon-accounting" class="permalink">🔗</a></h2>
+
+<p>Many companies, organizations, and governments around the world are working to
+measure and track their carbon emissions. This is called
+<a href="https://en.wikipedia.org/wiki/Carbon_accounting">carbon accounting</a>.</p>
+
+<p>While carbon accounting analyses vary widely, most of these procedures
+for calculating carbon emissions involve obtaining customer utility data,
+such as electric and natural gas usage, meter locations, rate plans, etc.</p>
+
+<h4 id="needs">Needs:</h4>
+
+<ul>
+  <li>
+    <p><strong>Standardized Data Formats and Access Procedures:</strong>
+This data often needs to be gathered both as historical data
+(e.g. getting the past year of usage data for a historical analysis)
+and ongoing data (e.g. getting the past day’s usage for real-time tracking
+of emissions). To address this need, the specifications from this working
+group will establish standardized data formats and access procedures so that
+data can be easily obtained, analyzed, and combined from multiple sources
+(e.g. companies with buildings in multiple utility territories).</p>
+  </li>
+  <li>
+    <p><strong>Standardized Customer Datasets:</strong>
+In order to perform the needed calculations for carbon accounting and
+other Use Cases, a comprehensive dataset with the appropriate data fields
+must be provided. Which data fields, granularity, and time periods are
+needed are highly use-case dependent, but without requirements to follow,
+utilities may not provide access to adequate datasets to satisfy an intended
+use case’s needs. Thus, specifications to address this use case must consider
+what specific datasets are required for common use cases in addition to how
+the data should be formatted and accessed.</p>
+  </li>
+  <li>
+    <p><strong>Privacy, Consent, and Security:</strong>
+Since carbon accounting is typically for specific entities,
+the actual utility data of that specific entity is required to perform
+carbon accounting calculations (e.g. the actual kwh usage, meter locations,
+and rate plans for the customer for the past 12 months). This data is
+typcially considered private information, so specifications to address this
+use case must consider privacy, consent, and security requirements as part
+of the scope of work.</p>
+  </li>
+  <li>
+    <p><strong>Streamlined User Experience:</strong>
+Many organizations do not have dedicated staff or sufficient resources
+to spend large amounts of time and effort gathering utility data needed
+for carbon accounting calculations. This effectively creates a
+“barrier to entry” that limits carbon accounting to only the most well-resourced
+organizations and prevents widespread adoption of decarbonization goals.
+Thus, in order to address this use case adequately, the specifications
+for this working group must consider user experience and performance
+to allow for easy, streamlined customer utility data access.</p>
+  </li>
+</ul>
+
+<h4 id="examples-of-users-in-this-use-case">Examples of users in this use case:</h4>
+
+<ul>
+  <li>
+    <p>Platforms that assess carbon emissions for enterprises (
+<a href="https://www.wattcarbon.com/">WattCarbon</a>,
+<a href="https://www.flexidao.com/">FlexiDAO</a>,
+<a href="https://www.microsoft.com/en-us/sustainability">Microsoft Cloud for Sustainability</a>,
+etc.)</p>
+  </li>
+  <li>
+    <p>Organizations looking to adopt the <a href="https://gocarbonfree247.com/">24/7 Carbon-free Energy Compact</a>
+and other <a href="https://en.wikipedia.org/wiki/Environmental%2C_social_and_corporate_governance">ESG</a> pledges</p>
+  </li>
+  <li>
+    <p>Organizations that have pledged to be carbon free (
+<a href="https://www.google.com/about/datacenters/cleanenergy/">Google</a>,
+<a href="https://www.apple.com/newsroom/2020/07/apple-commits-to-be-100-percent-carbon-neutral-for-its-supply-chain-and-products-by-2030/">Apple</a>,
+<a href="https://www.microsoft.com/en-us/corporate-responsibility/sustainability/operations">Microsoft</a>,
+etc.)</p>
+  </li>
+  <li>
+    <p>Consultants and advisors helping organizations that have climate and decarbonization targets</p>
+  </li>
+</ul>
+
+<h2 id="use-case-2-decarbonization-projects-">Use Case 2: Decarbonization Projects <a id="use-case-decarbonization-projects" href="#use-case-decarbonization-projects" class="permalink">🔗</a></h2>
+
+<p>Often, organizations with decarbonization targets (see <a href="#use-case-carbon-accounting">Use Case 1: Carbon Accounting</a> above),
+will evaluate projects that may positively impact their carbon emissions. These projects
+can range from physical locally (e.g. installing solar or EV charging) and remote (e.g.
+building renewable generation projects via wholesale power purchase agreements), to virtual
+direct (e.g. avoided emissions by managing building usage dynamically) or financial
+(e.g. switching rate plans to carbon free sources or community solar).</p>
+
+<h4 id="needs-1">Needs:</h4>
+
+<ul>
+  <li>
+    <p><strong>Use Case 1 Needs:</strong>
+Like carbon accounting, the calculations for assessing decarbonization
+projects typcially require the specific utility data for a specific entity.
+So, all of the needs for carbon accounting often are needed for assessing
+decarbonization projects, both for the initial feasibility analysis and
+ongoing project measurement and verification (<a href="https://en.wikipedia.org/wiki/Measurement_and_Verification">M&amp;V</a>).</p>
+  </li>
+  <li>
+    <p><strong>Utility Bill and Cost Breakdowns:</strong>
+Decarbonization projects are frequently analyzed based on financial
+payback or savings calculations (e.g. converting a fleet of company
+vehicles to EVs would remove gasoline costs while incurring more
+electricity costs). Thus, to address this use case the specifications
+must consider how to obtain customer utility bill and cost breakdown
+information so that these complex financial analyses can be performed,
+both for initial financial analysis and ongoing cost monitoring.</p>
+  </li>
+</ul>
+
+<h4 id="examples-of-users-in-this-use-case-1">Examples of users in this use case:</h4>
+
+<ul>
+  <li>
+    <p>Property owners looking to install decarbonization projects on their properties (EV charging,
+distributed solar, etc.)</p>
+  </li>
+  <li>
+    <p>Contractors, vendors, consultants, and advisors who work with property owners with decarbonization projects
+(EV charging vendors, solar installers, ESCOs, etc.)</p>
+  </li>
+  <li>
+    <p>Building control and energy management systems that dynamically modify the behavior of equipment based
+on carbon impact or customer savings (demand charge reduction via batteries, dynamic EV charging, HVAC controls, etc.)</p>
+  </li>
+  <li>
+    <p>Platforms and firms that analyze customer rate plan options to maximize carbon impact (community solar,
+direct power purchase agreements, etc.)</p>
+  </li>
+  <li>
+    <p>Negative emissions projects (e.g. direct air capture) that need to monitor and measure their customer’s
+net emissions related to the project.</p>
+  </li>
+</ul>
+
+<h2 id="use-case-3-distributed-grid-flexibility-">Use Case 3: Distributed Grid Flexibility <a id="use-case-distributed-flexibility" href="#use-case-distributed-flexibility" class="permalink">🔗</a></h2>
+
+<p><em>“In the past, we would forecast load and deploy generation. In the future, we will forecast generation and deploy load.” -overheard at utility conference</em></p>
+
+<p>While the first two use cases focus on individual entities’ carbon impact,
+as more and more non-dispatchable renewables get deployed, the grid will
+increasingly need sources of dynamic load flexibility to partially address
+the intermittency of solar and wind generation. Technologies to allow for
+higher and higher penetration of renewables on the grid can often be installed
+“behind the meter” as distributed energy resources (DERs).</p>
+
+<p>While these technologies do not directly decarbonize the grid, they allow for
+higher penetration of cheap, zero carbon renewables. Thus, this working group
+considers grid flexibility and load management technologies a key use case
+for bolstering decarbonization efforts.</p>
+
+<h4 id="needs-2">Needs:</h4>
+
+<ul>
+  <li>
+    <p><strong>Use Case 1 Needs:</strong>
+Like carbon accounting, the calculations for assessing the eligibility of
+deploying or using a distributed grid flexibility or load management technology
+typically requires the specific utility data for a specific entity.
+So, all of the needs for carbon accounting often are needed for assessing
+distributed grid flexibility technologies, both for the initial feasibility
+analysis and ongoing measurement and verification (<a href="https://en.wikipedia.org/wiki/Measurement_and_Verification">M&amp;V</a>).</p>
+  </li>
+  <li>
+    <p><strong>Program Eligibility and Participation Information:</strong>
+Because distributed grid flexibility and load management technologies are active
+participants in managing load on the electrical grid, they often are registered
+as part of a utility or central operator program (e.g. demand response programs).
+Thus, the specifications to address this use case must consider how to include
+program eligibility and participation details as part of the standardized customer
+dataset.</p>
+  </li>
+</ul>
+
+<h4 id="examples-of-users-in-this-use-case-2">Examples of users in this use case:</h4>
+
+<ul>
+  <li>
+    <p>Apps and devices that participate in demand response programs (
+<a href="https://ferc.gov/media/ferc-order-no-2222-fact-sheet">FERC Order 2222</a>,
+<a href="https://www.energy.ca.gov/proceedings/energy-commission-proceedings/load-management-rulemaking">CEC Load Management Rulemaking</a>,
+<a href="https://www.nyserda.ny.gov/All-Programs/Energy-Storage/Energy-Storage-for-Your-Business/Demand-Response-Programs">NYISO Demand Response</a>,
+etc.)</p>
+  </li>
+  <li>
+    <p>DER aggregators that manage collections of distributed resources and participate in grid events and markets (
+<a href="https://www.ohmconnect.com/">OhmConnect</a>,
+<a href="https://www.enelx.com/n-a/en">Enel X</a>,
+etc.)</p>
+  </li>
+  <li>
+    <p>Apps and devices that monitor grid conditions and control DERs and IoT prevent additional
+carbon-intensive generation from coming online (e.g. avoided emissions).</p>
+  </li>
+  <li>
+    <p>Utilities needing to standardize customer data access and sharing across multiple divisions
+within the utility itself, between internal vendors, or with utility program implementers
+(energy efficiency rebate programs, building electrification initiatives, etc.).</p>
+  </li>
+</ul>
+
+<h2 id="use-case-4-building-benchmarking-">Use Case 4: Building Benchmarking <a id="use-case-benchmarking" href="#use-case-benchmarking" class="permalink">🔗</a></h2>
+
+<p>Municipalities and governments are increasingly requiring that building owners submit
+whole-building energy usage information in order to do carbon accounting and measure
+building energy efficiency for their jurisdiction.</p>
+
+<h4 id="needs-3">Needs:</h4>
+
+<ul>
+  <li>
+    <p><strong>Standardized Whole-Building Data Formats:</strong>
+Whole-building usage data needed to perform building benchmarking calculations
+is similar to Use Case 1: Carbon Accounting, only usage can be aggregated over
+multiple usage points and be provided as a single combined reading. Thus,
+the specifications to address benchmarkings must consider how to appropriately
+define how data is being aggregated, and where necessary provide meta data
+on the underlying individual components that were used to create the whole-building
+aggregate usage values.</p>
+  </li>
+  <li>
+    <p><strong>Streamlined Data Request and Access Procedures:</strong>
+Unlike individual customer data requests, which are typically sent to and
+approved by individual customers, benchmarking data requests are typically
+sent to and approved by the utility directly. This means the dynamics and requirements
+of a “data request” changes for this Use Case. Thus, specifications that address
+this use case must consider how to best structure user data requests submissions
+directly to utilities rather than individual customers. Additionally,
+specifications must consider that when a data request is approved, what
+data access procedures will be used, and will they be different from data
+access procedures from the other Use Cases.</p>
+  </li>
+  <li>
+    <p><strong>Privacy and Consent Requirements:</strong>
+While individual customer data access frequently requires first obtaining
+consent from the customer. Jurisdictions requiring whole-building data access
+often specify thresholds over which individual customer consent is not
+required to obtain whole-building usage data (e.g. if any individual
+customer’s usage is no more than 15% of the whole-building usage). If
+whole-building usage is under these thresholds, however, individual customer
+consent will still be required for each building tenant. Thus, specifications
+addressing this use case must consider how to incorporate customer consent
+thresholds for whole-building access, and like the other use cases, the
+process by which users may request and obtain customer consent when required.</p>
+  </li>
+</ul>
+
+<h4 id="examples-of-users-in-this-use-case-3">Examples of users in this use case:</h4>
+
+<ul>
+  <li>
+    <p>Cities and regions with building benchmarking mandates (
+<a href="https://www.fcgov.com/bews/">Fort Collins Building Energy and Water Scoring</a>,
+<a href="https://atlantabuildingefficiency.com/">Atlanta Building Efficiency</a>,
+<a href="https://www.energy.ca.gov/programs-and-topics/programs/building-energy-benchmarking-program">California Building Energy Benchmarking Program</a>,
+etc.)</p>
+  </li>
+  <li>
+    <p>Property owners wanting to benchmark their buildings achieve green and efficiency ratings (
+<a href="https://www.energystar.gov/buildings">Energy Star</a>,
+<a href="https://www.usgbc.org/leed">LEED</a>,
+etc.)</p>
+  </li>
+</ul>
+
+<h2 id="use-cases-not-in-scope-for-this-working-group-">Use cases NOT in scope for this working group <a id="not-in-scope" href="#not-in-scope" class="permalink">🔗</a></h2>
+
+<ul>
+  <li>
+    <p>Live grid operations and controls (actual demand response signaling for equipment, solar inverter control and generation curtailment, EV charging shut-off signals, etc.)</p>
+  </li>
+  <li>
+    <p>Financial transactions and settlements (customer utility bill payments, load management program participation financial payouts and settlement, etc.)</p>
+  </li>
+  <li>
+    <p>Modifying customer accounts (changing a customer’s rate plan, starting or stopping utility services, etc.)</p>
+  </li>
+  <li>
+    <p>Providing data access to region-level datasets (ISO load and generation curves, capacity market live pricing data, etc.)</p>
+  </li>
+  <li>
+    <p>Disaggregation and analysis methods for aggregate datasets, either for single meter disaggregation (e.g. home appliance enumeration) or multi-meter analysis (e.g. whole-building-to-individual-tenant)</p>
+  </li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-light pt-5 pb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h4>Customer Data Working Group:</h4>
+                        <ul>
+                            <li>
+                                <a href="/"
+                                    >Working Group website</a>
+                                (this website!)
+                            </li>
+                            <li>
+                                <a href="/use-cases"
+                                    >Use Cases</a>
+                            </li>
+                            <li>
+                                <a href="/specs"
+                                    >Specifications</a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/carbon-data-specification/Customer-Data" target="_blank"
+                                    >Github Repository
+                                    <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/carbon-data-specification/Customer-Data/tree/main/meetings" target="_blank"
+                                    >Meeting Minutes
+                                    <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/carbon-data-specification/Customer-Data/pulls" target="_blank"
+                                    >Active Pull Requests
+                                    <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
+                            </li>
+                            <li>
+                                <a href="https://lists.lfenergy.org/g/cdsc-customer-data-wg" target="_blank"
+                                    >Mailing List
+                                    <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
+                            </li>
+                            <li>
+                                <a href="https://lists.lfenergy.org/g/cdsc-customer-data-wg/calendar" target="_blank"
+                                    >Event Calendar
+                                    <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
+                            </li>
+                            <li>
+                                <a href="https://slack.lfenergy.org/" target="_blank"
+                                    >Slack
+                                    <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
+                                (channel: <code>#cdsc-customer-data-wg</code>)
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <h4>CDSC / Linux Foundation:</h4>
+                        <ul>
+                            <li>
+                                <a href="https://www.lfenergy.org/projects/carbon-data-specification-cds/" target="_blank"
+                                    >Carbon Data Specification Consortium (CDSC)
+                                    <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
+                                <ul>
+                                    <li>
+                                        <a href="https://github.com/carbon-data-specification/Power-Systems-Data" target="_blank"
+                                            >Power Systems Data Working Group (WG2)
+                                            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
+                                    </li>
+                                    <li>
+                                        <a href="https://lists.lfenergy.org/g/cdsc-tsc" target="_blank"
+                                            >Technical Steering Committee (TSC)
+                                            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
+                                    </li>
+                                    <li>
+                                        <a href="https://lists.lfenergy.org/g/cdsc-strategy-committee" target="_blank"
+                                            >Strategy Committee (TSC)
+                                            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="https://www.linuxfoundation.org/" target="_blank"
+                                    >Linux Foundation
+                                    <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
+                                <ul>
+                                    <li>
+                                        <a href="https://www.lfenergy.org/" target="_blank"
+                                            >LF Energy
+                                            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scripts -->
+        <script src="/assets/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
+        
+        
+    </body>
+</html>
+
