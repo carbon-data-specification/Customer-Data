@@ -47,7 +47,8 @@ Granular certificates are an important decarbonization tool for applications
 such as tracking 24/7 carbon-free energy matching and creating market signals
 to stimulate investment in new clean technologies. Granular certification
 depends on streamlined and scalable access to granular generation data from
-clean energy projects (for example, from wholesale power purchase agreements).
+clean energy projects (for example, from wholesale power purchase agreements)
+and charge / discharge data from in-front-of-the-meter storage assets.
 To address this use case, the specifications must consider how to obtain
 (revenue grade) metered generation data from individual asset owners in a
 centralized and secure manner.
