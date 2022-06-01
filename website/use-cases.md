@@ -256,6 +256,6 @@ etc.)
 
 * Providing data access to region-level datasets (ISO load and generation curves, capacity market live pricing data, etc.)
 
-* Carbon and climate registry integrations for retrieving and submitting carbon impactful projects
+* Environmental Attribute Credit registry integrations for exchanging information and data on issued or retired granular certificates
 
 * Disaggregation and analysis methods for aggregate datasets, either for single meter disaggregation (e.g. home appliance enumeration) or multi-meter analysis (e.g. whole-building-to-individual-tenant)
