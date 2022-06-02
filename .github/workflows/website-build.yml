@@ -84,6 +84,12 @@ jobs:
           cd ${{ github.workspace }}/gh-pages-branch
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add -A
-          git commit -m "[bot] Github Pages build"
-          git push
+          # only commit and push if there's actually things commit
+          if [ $(git status --short | wc -l) -ne 0 ]; then
+              echo "Pushing website changes to gh-pages..."
+              git add -A
+              git commit -m "[bot] Github Pages build"
+              git push
+          else
+              echo "No changes on website"
+          fi
