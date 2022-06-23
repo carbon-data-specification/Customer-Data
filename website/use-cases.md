@@ -42,6 +42,17 @@ use case's needs. Thus, specifications to address this use case must consider
 what specific datasets are required for common use cases in addition to how
 the data should be formatted and accessed.
 
+* **Granular Certification Data:**
+Granular certificates are an important decarbonization tool for applications
+such as tracking 24/7 carbon-free energy matching and creating market signals
+to stimulate investment in new clean technologies. Granular certification
+depends on streamlined and scalable access to granular generation data from
+clean energy projects (for example, from wholesale power purchase agreements)
+and charge / discharge data from in-front-of-the-meter storage assets.
+To address this use case, the specifications must consider how to obtain
+(revenue grade) metered generation data from individual asset owners in a
+centralized and secure manner.
+
 * **Privacy, Consent, and Security:**
 Since carbon accounting is typically for specific entities,
 the actual utility data of that specific entity is required to perform
@@ -244,5 +255,7 @@ etc.)
 * Modifying customer accounts (changing a customer's rate plan, starting or stopping utility services, etc.)
 
 * Providing data access to region-level datasets (ISO load and generation curves, capacity market live pricing data, etc.)
+
+* Environmental Attribute Credit registry integrations for exchanging information and data on issued or retired granular certificates
 
 * Disaggregation and analysis methods for aggregate datasets, either for single meter disaggregation (e.g. home appliance enumeration) or multi-meter analysis (e.g. whole-building-to-individual-tenant)
