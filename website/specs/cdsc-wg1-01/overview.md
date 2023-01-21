@@ -194,3 +194,9 @@ The coverage area object has the following fields at the root level:
 * `electric_service_territory` - Geographic area where data and/or functionality for utility electric services is supported
 * `natural_gas_service_territory` - Geographic area where data and/or functionality for utility natural gas services is supported
 * `water_service_territory` - Geographic area where data and/or functionality for utility water services is supported
+
+---
+
+# Other Drafts <a id="other-drafts" href="#other-drafts" class="permalink">🔗</a>
+
+* Maintainer's draft: [[Website](https://daniel-utilityapi.github.io/Customer-Data/specs/cdsc-wg1-01/overview)] [[Code](https://github.com/daniel-utilityapi/Customer-Data/blob/main/website/specs/cdsc-wg1-01/overview.md)]
