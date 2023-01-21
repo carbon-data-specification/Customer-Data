@@ -8,4 +8,10 @@ meta_description: Linux Foundation Energy - Carbon Data Specification Consortium
 
 # Server Metadata - Overview
 
-TODO
+`[No main draft available yet]` See [Other Drafts](#other-drafts) section below for in-progress and alternative drafts
+
+---
+
+# Other Drafts <a id="other-drafts" href="#other-drafts" class="permalink">🔗</a>
+
+* Maintainer's draft: [[Website](https://daniel-utilityapi.github.io/Customer-Data/specs/cdsc-wg1-01/overview)] [[Code](https://github.com/daniel-utilityapi/Customer-Data/blob/main/website/specs/cdsc-wg1-01/overview.md)]

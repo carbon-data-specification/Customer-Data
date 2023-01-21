@@ -17,3 +17,7 @@ Below is a rendering of the original specification source: [{{ site.github_specs
 {% include spec_copies/placeholder_cdsc-wg1-01.md %}
 
 ---
+
+# Other Drafts <a id="other-drafts" href="#other-drafts" class="permalink">🔗</a>
+
+* Maintainer's draft: [[Website](https://daniel-utilityapi.github.io/Customer-Data/specs/cdsc-wg1-01)] [[Code](https://github.com/daniel-utilityapi/Customer-Data/blob/main/specifications/cdsc-wg1-01.md)]
