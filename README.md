@@ -28,32 +28,12 @@ Want to participate? Great! We're an open organization, so we welcome any compan
 * Comment on [pull requests](https://github.com/carbon-data-specification/Customer-Data/pulls).
 * Fork our [repository](https://github.com/carbon-data-specification/Customer-Data) and play around with our code and documentation on your own (we're open source!).
 
-### Things you can do if you become an LFESS member (it's free!):
+### Things you can do if you become an [LFESS member](https://customerdata.carbondataspec.org/lfess) (it's free!):
 
 * Contribute comments, suggestions, or other content that will be included in our [specifications](https://customerdata.carbondataspec.org/specs).
 * Open [pull requests](https://github.com/carbon-data-specification/Customer-Data/pulls) with proposed changes to our [repository](https://github.com/carbon-data-specification/Customer-Data) or [specifications](https://customerdata.carbondataspec.org/specs).
 
-NOTE: It's okay if you're not yet an LFESS member and comment on something (spec, issue, pull request, mailing list, slack discussion, etc.), and we want your input to be incorporated into our specifications. We'll just ask you to join LFESS before we can merge your suggestions into the specifications.
-
-## What is LFESS, and why do I need to join to contribute edits to specifications?
-
-In order to make sure our [specifications](https://customerdata.carbondataspec.org/specs) are free and open, we require that all contributers agree to membership terms of our Joint Development Foundation (JDF) project, called "LF Energy Standards and Specifications" (LFESS).
-
-View the LFESS membership agreement and charter: https://github.com/lf-energy/foundation/blob/main/project_charters/lfess_charter.pdf
-
-The LFESS membership agreement requires that contributors must make all contributions in an open manner, so that our specifications are free, accessible, and usable by everyone.
-
-## How do I join LFESS?
-
-General membership is free!
-
-### For organizations (companies, non-profits, etc.):
-* Visit https://joinnow.lfess.org, review the membership agreement, and fill out the docusign.
-* Receive a confirmation email from LFESS that you're now a member.
-
-### For individuals:
-* Email operations@lfess.org requesting to join LFESS.
-* Receive instructions on how to join LFESS.
+NOTE: It's okay if you're not yet an [LFESS member](https://customerdata.carbondataspec.org/lfess) and comment on something (spec, issue, pull request, mailing list, slack discussion, etc.), and we want your input to be incorporated into our specifications. We'll just ask you to [join LFESS](https://customerdata.carbondataspec.org/lfess#join) before we can merge your suggestions into the specifications.
 
 ## Scope
 
