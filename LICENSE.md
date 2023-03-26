@@ -2,7 +2,7 @@ Licenses for LF Energy Standards and Specification Working Groups
 
 The following describes the licenses for various materials in this repository.
 For specific details, see the Working Group's Charter, which is available at:
-https://agreement.lfess.energy
+https://github.com/lf-energy/foundation/blob/main/project_charters/lfess_charter.pdf
 
 Source code in this repository is provided under the Apache 2.0 License, a copy of
 which is included below.
