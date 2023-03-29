@@ -45,15 +45,16 @@ Content-Type: application/json;charset=UTF-8
 
 {
     "cds_metadata_version": "v1",
+    "cds_metadata_url": "https://demoutility.com/.well-known/carbon-data-spec.json",
 
+    "created": "2022-01-01T00:00:00.000000Z",
     "updated": "2022-06-01T00:00:00.000000Z",
 
-    "id": "demoutility",
     "name": "Demo Gas & Electric",
     "description": "A fictional utility that can be used for testing and demonstration purposes.",
     "website": "https://demoutility.com/data-access",
     "documentation": "https://demoutility.com/data-access/docs",
-    "coverage": "https://static.demoutility.com/cds-coverage.json",
+    "support": "https://demoutility.com/contact-us?type=developers",
     "infrastructure_types": [
         "distribution_utility",
         "metering_provider,
@@ -64,28 +65,17 @@ Content-Type: application/json;charset=UTF-8
         "natural_gas"
     ],
     "capabilities": [
+        "coverage",
         "oauth",
-        "customer_data",
-        "extension_ieee1547"
+        "ieee1547"
     ],
+    "related_metadata": ["https://static.demoutility.com/sister-company-cds.json"],
+
+    "coverage": "https://static.demoutility.com/cds-coverage.json",
 
     "oauth_metadata": "https://demoutility.com/.well-known/oauth-authorization-server",
-    "oauth_client_registration_human": "https://demoutility.com/data-access/register",
-    "oauth_client_registration_additional_metadata": [
-        {
-            "name": "cds_scopes_of_use",
-            "required": true
-        },
-        {
-            "name": "cds_webhook_urls",
-            "required": false
-        }
-    ],
 
-    "customer_data_api": "https://api.demoutility.com/cds/v1",
-    "customer_data_human": "https://demoutility.com/client-dashboard",
-
-    "extension_ieee1547_setup": "https://demoutility.com/smart-inverters/setup"
+    "ieee1547_setup": "https://demoutility.com/smart-inverters/setup"
 }
 ```
 
@@ -94,20 +84,21 @@ Content-Type: application/json;charset=UTF-8
 Overall information about the Server is included at the object root level:
 
 * `cds_metadata_version` - _string_ - (required) Which version of server metadata structure this server follows (currently `v1` is the only version)
+* `cds_metadata_url` - _string_ - (required) A URL link to this metadata object's canonical network location
+* `created` - _ISO8601 datetime_ - (required) When the metadata url was first made available
 * `updated` - _ISO8601 datetime_ - (required) When this metadata object was last modified.
-* `id` - _string_ - (required) A self-assigned globally unique identifier for the utility or entity (e.g. "demoutility")
 * `name` - _string_ - (required) The name of the utility or entity (e.g. "Demo Gas & Electric")
 * `description` - _string_ - (required) A brief description about the utility or entity (e.g. "An electric and gas utility serving customers in Northern California")
 * `website` - _URL_ - (required) Where users can learn more about the utility or entity and its data access capabilities
 * `documentation` - _URL_ - (required) Where users can find the utility or entity's technical reference documentation
-* `coverage` - _URL_ - (optional) Where to find the structured [Coverage](#coverage-endpoint) details for the utility or entity
+* `support` - _URL_ - (required) Where Clients can find contact information for technical support on the Server's capabilities
 * `infrastructure_types` - _Array[[InfrastructureType](#infrastructure-types)]_ - (required) A list of Infrastructure Types that are applicable to this utility or entity
 * `commodity_types` - _Array[[CommodityType](#commodity-types)]_ - (required) A list of Commodity Types that are applicable to this utility or entity
 * `capabilities` - _Array[[Capability](#capabilities)]_ - (required) What Carbon Data Specification functionality the utility or entity supports
+* `coverage` - _URL_ - (optional) Where to find the structured [Coverage](#coverage-endpoint) details for the utility or entity
+* `related_metadata` - _Array[URL]_ - (optional) Where to find other related [Metadata Endpoints](#metadata-endpoint)
 
-Other components are listed in the `capabilities`, where each listed component can add additional
-metadata fields, prefixed with their capability name. For example, the `oauth` capability will add
-additional metadata fields prefixed with `oauth_*`.
+Other components are listed in the `capabilities`, where each listed component can optionally add additional metadata fields. Except for `coverage`, listed capabilities are defined in their own extensions and specifications.
 
 #### Infrastructure Types <a id="infrastructure-types" href="#infrastructure-types" class="permalink">🔗</a>
 
@@ -120,16 +111,20 @@ additional metadata fields prefixed with `oauth_*`.
 
 * `electricity` - Has data and/or functionality around utility electric services
 * `natural_gas` - Has data and/or functionality around utility natural gas services
+* `fuel_oil` - Has data and/or functionality around utility fuel oil services
 * `water` - Has data and/or functionality around utility water services
 
 #### Capabilities <a id="capabilities" href="#capabilities" class="permalink">🔗</a>
 
-Below is the list of officially supported capabilities by the CDS Customer Data working group:
+Below is the list of supported capabilities in this specification:
 
-* `oauth` - See [`cdsc-wg1-02` (TODO)] - How Clients can register with the Server, as well as the primary method for obtaining customer consent
-* `customer_data` - See [`cdsc-wg1-03` (TODO)] - How Clients can access authorized customer data using standarized API endpoints and formats
+* `coverage` - The Server is providing coverage details
 
-Servers can extend their list of capabilities with other non-CDS functionalities, but they MUST be prefixed with `extension_*`. For example, if the utility or entity provides connectivity for smart inverters (e.g. IEEE 1547) and wants to list that as a capability in its metadata, it can include something like `extension_ieee1547` as a capability, so that Clients who know how to interpret that capability can auto-discover it.
+And here are some other extensions that add capabilities for Servers:
+
+* `oauth` - See [`cdsc-wg1-02` (TODO)] - How Clients can register with the Server, as well as the primary method for obtaining customer consent to gain customer data access
+
+Servers can extend their list of capabilities with other non-CDS functionalities. For example, if the utility or entity provides connectivity for smart inverters (e.g. IEEE 1547) and wants to list that as a capability in its metadata, it can include something like `ieee1547` as a capability, so that Clients who know how to interpret that capability can auto-discover it.
 
 Clients MUST ignore any capabilities they do not recognize.
 
@@ -193,6 +188,7 @@ The coverage area object has the following fields at the root level:
 
 * `electric_service_territory` - Geographic area where data and/or functionality for utility electric services is supported
 * `natural_gas_service_territory` - Geographic area where data and/or functionality for utility natural gas services is supported
+* `fuel_oil_service_territory` - Geographic area where data and/or functionality for utility fuel oil services is supported
 * `water_service_territory` - Geographic area where data and/or functionality for utility water services is supported
 
 ---
