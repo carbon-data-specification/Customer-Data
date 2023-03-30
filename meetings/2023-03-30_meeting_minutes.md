@@ -20,10 +20,19 @@
 
 ## Attendees
 * Daniel Roesler (UtilityAPI) (Maintainer)
-* TODO
+* Jordan Hughes (Apple)
 
 ## Minutes
-* TODO
+* Intro
+* Overview of LFEnergy > CDSC > WG1
+    * Use Cases (2022)
+    * Specs (2023)
+* JDF Update agenda item
+* Specifications timeline
+* Reviewed design principles
+* Reviewed draft spec (cdsc-wg1-01)
+* Consensus?
+
 
 ## Closing Discussion
-* Consensus to commit this to repo? Yes/No
+* Consensus to commit this to repo? Yes
