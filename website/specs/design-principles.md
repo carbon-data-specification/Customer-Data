@@ -25,6 +25,10 @@ principles that help guide our choices as a working group.
 * [Principle 3: Be Realistic](#be-realistic)
   * [Don't assume a motivated implementer](#dont-assume-motivated-implementer)
   * [Create materials and guidance for regulators](#regulatory-guidance)
+* [Principle 4: Be Adaptable](#be-adaptable)
+  * [Build in extensibility](#build-in-extensibility)
+  * [Encourage feedback and contributions](#encourage-feedback)
+  * [Regularly review and update](#regularly-review-and-update)
 
 ---
 
@@ -202,3 +206,37 @@ This category is similar the first design principle's guideline
 of [creating ample complementary documentation](#ample-documentation),
 only for the purpose of increasing accessibility for regulators and
 policy makers.
+
+---
+
+## Principle 4: Be Adaptable <a id="be-adaptable" href="#be-adaptable" class="permalink">🔗</a>
+
+The energy and carbon accounting sectors are constantly evolving,
+with new technologies, methods, and requirements emerging frequently.
+To ensure the longevity and relevance of our specifications, we must
+design them to be adaptable and responsive to changes in these sectors.
+
+### Build in extensibility <a id="build-in-extensibility" href="#build-in-extensibility" class="permalink">🔗</a>
+
+We must design our specifications to support extensibility, allowing
+for the addition of new features and functionality over time without
+requiring significant changes to existing implementations (i.e. try
+to be backwards compatible). This includes using modular designs and
+providing clear guidance on how extensions can be integrated into
+the core specifications.
+
+### Encourage feedback and contributions <a id="encourage-feedback" href="#encourage-feedback" class="permalink">🔗</a>
+
+We must promote an open and inclusive community that encourages
+feedback and contributions from a wide range of stakeholders. By
+actively soliciting input and engaging with different perspectives,
+we can ensure that our specifications remain relevant and useful in
+a changing landscape.
+
+### Regularly review and update <a id="regularly-review-and-update" href="#regularly-review-and-update" class="permalink">🔗</a>
+
+We must establish a process for regular review and updates to the
+specifications to ensure they remain aligned with the latest
+developments in the energy and carbon accounting sectors. This
+includes monitoring changes in related standards and best practices,
+as well as incorporating feedback from the user community.
