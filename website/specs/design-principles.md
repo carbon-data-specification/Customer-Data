@@ -26,7 +26,7 @@ principles that help guide our choices as a working group.
   * [Don't assume a motivated implementer](#dont-assume-motivated-implementer)
   * [Create materials and guidance for regulators](#regulatory-guidance)
 * [Principle 4: Be Adaptable](#be-adaptable)
-  * [Build in extensibility](#build-in-extensibility)
+  * [Build in flexibility](#build-in-flexibility)
   * [Encourage feedback and contributions](#encourage-feedback)
   * [Regularly review and update](#regularly-review-and-update)
 
