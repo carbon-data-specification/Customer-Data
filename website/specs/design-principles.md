@@ -154,7 +154,7 @@ suites that we will maintain.
 
 ## Principle 3: Be Realistic <a id="be-realistic" href="#be-realistic" class="permalink">🔗</a>
 
-The carbon accounting and energy industries are a huge, complicated, and
+The carbon accounting and energy industries are huge, complicated, and
 have a large diversity of regulatory constructs and business models.
 Sometimes, major groups and incentives in these industries will not
 necessarily align with our goals and [Use Cases]({{ '/use-cases' | relative_url }}).
