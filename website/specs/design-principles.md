@@ -216,9 +216,9 @@ with new technologies, methods, and requirements emerging frequently.
 To ensure the longevity and relevance of our specifications, we must
 design them to be adaptable and responsive to changes in these sectors.
 
-### Build in extensibility <a id="build-in-extensibility" href="#build-in-extensibility" class="permalink">🔗</a>
+### Build in flexibility <a id="build-in-flexibility" href="#build-in-flexibility" class="permalink">🔗</a>
 
-We must design our specifications to support extensibility, allowing
+We must design our specifications to be flexible and extensible, allowing
 for the addition of new features and functionality over time without
 requiring significant changes to existing implementations (i.e. try
 to be backwards compatible). This includes using modular designs and
