@@ -70,7 +70,7 @@ with how the various APIs, data models, and behaviors are structured. We want
 this initial exploring experience to be intuitive and require minimal time to
 get a basic understanding of how things work.
 
-To aide in that effort, we will be preferring simple, easy-to-understand, and
+To aid in that effort, we will be preferring simple, easy-to-understand, and
 human-readable field names and enumerations in our data models and API endpoints.
 This strategy prevents new users during their initial exploration from constantly
 having to go back and look up what various values mean. A new user should not
