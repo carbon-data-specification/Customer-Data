@@ -54,7 +54,7 @@ so that users can directly link to the specific part that they want to reference
 ### Make ample complementary documentation and materials <a id="ample-documentation" href="#ample-documentation" class="permalink">🔗</a>
 
 By definition, our specifications must be comprehensive and, well, _specific_.
-This unfortunately means that the specifications themselves are complex and a
+This unfortunately means that the specifications themselves are complex and are
 probably not the most immediately readable thing for a new user.
 
 So, in addition to publishing our official specifications, we must make an effort
