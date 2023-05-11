@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="These are the various design principles we want to keep in mind when writing our specifications">
+        <link rel="icon" type="image/png" href="/assets/favicon.png">
+        <meta name="robots" content="noindex, nofollow"/>
+        <title>CDSC-WG1 - Design Principles</title>
+        <link href="/assets/bootstrap-5.1.3-dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            /* Permalink styling */
+            .permalink {
+                text-decoration:none;
+                font-size: 60%;
+                display: inline-block;
+                vertical-align: top;
+                padding-top: 0.4em;
+            }
+            /* SVG icons (based on https://github.com/diafygi/svg-font-to-svg-sprite-converter)
+               Example (put "svgicons: fa-link, fa-plus-circle" in front matter):
+               <svg class="svgicon"><use href="#fa-link"/></svg>
+               <svg class="svgicon"><use href="#fa-plus-circle"/></svg>
+            */
+            #svgicon-defs{
+                display: none;
+            }
+            .svgicon {
+                overflow: visible !important;
+                height: 0.7em;
+                width: 0.7em;
+                fill:currentColor;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- SVG Icons (see comment in css above on how to use) -->
+        <svg id="svgicon-defs" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <symbol id="fa-external-link" viewBox="0 0 1792 1792" overflow="visible">
+    <path d="M1408 928v320q0 119 -84.5 203.5t-203.5 84.5h-832q-119 0 -203.5 -84.5t-84.5 -203.5v-832q0 -119 84.5 -203.5t203.5 -84.5h704q14 0 23 9t9 23v64q0 14 -9 23t-23 9h-704q-66 0 -113 47t-47 113v832q0 66 47 113t113 47h832q66 0 113 -47t47 -113v-320q0 -14 9 -23t23 -9h64q14 0 23 9t9 23zM1792 64v512q0 26 -19 45t-45 19t-45 -19l-176 -176l-652 652q-10 10 -23 10t-23 -10l-114 -114q-10 -10 -10 -23t10 -23l652 -652l-176 -176q-19 -19 -19 -45t19 -45t45 -19h512q26 0 45 19t19 45z"></path>
+</symbol>
+
+                
+                
+            </defs>
+        </svg>
+
+        <!-- Non-production Warning -->
+        <div id="non-prod-warning" class="bg-danger text-light text-center p-2 d-none">
+            <strong>
+                WARNING: THIS IS A DEVELOPMENT VERSION OF THE CDSC-WG1 WEBSITE
+                <span class="d-inline-block">
+                    (this message does not appear on carbondataspec.org)
+                </span>
+            </strong>
+        </div>
+        <script>
+            if (window.location.hostname.indexOf("carbondataspec.org") === -1) {
+                document.getElementById("non-prod-warning").classList.remove("d-none");
+            }
+        </script>
+
+        <!-- Header -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a
+                    class="navbar-brand"
+                    href="/"
+                    >CDSC-WG1</a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#header"
+                    aria-controls="header"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="header">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                
+                                href="/"
+                                >Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                
+                                href="/use-cases"
+                                >Use Cases</a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                
+                                href="/specs"
+                                >Specifications</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/carbon-data-specification/Customer-Data/tree/main/meetings" target="_blank"
+                                >Meeting Minutes
+                                <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Content -->
+        <div role="main" class="container pt-3 pb-5">
+            <div class="row">
+                <div class="col">
+                    <p><a href="/">Home</a> / <a href="/specs">Specifications</a> / Design Principles</p>
+
+<h1 id="cdsc-wg1-design-principles">CDSC-WG1 Design Principles</h1>
+
+<p>As we write, discuss, and publish our <a href="/specs">specifications</a>
+for how to provide streamlined customer data access to address our target
+<a href="/use-cases">Use Cases</a>, we will follow several design
+principles that help guide our choices as a working group.</p>
+
+<h4 id="table-of-contents">Table of Contents</h4>
+
+<ul>
+  <li><a href="#be-accessible">Principle 1: Be Accessible</a>
+    <ul>
+      <li><a href="#freely-accessible">Make specifications free and easily referenced</a></li>
+      <li><a href="#ample-documentation">Make ample complementary documentation and materials</a></li>
+      <li><a href="#human-readable">Make APIs and data structures easily understood by humans</a></li>
+    </ul>
+  </li>
+  <li><a href="#be-useful">Principle 2: Be Useful</a>
+    <ul>
+      <li><a href="#focus-on-end-users">Focus on end users</a></li>
+      <li><a href="#sanity-checks">Include sanity checks</a></li>
+      <li><a href="#test-suites">Write open source test suites</a></li>
+    </ul>
+  </li>
+  <li><a href="#be-realistic">Principle 3: Be Realistic</a>
+    <ul>
+      <li><a href="#dont-assume-motivated-implementer">Don’t assume a motivated implementer</a></li>
+      <li><a href="#regulatory-guidance">Create materials and guidance for regulators</a></li>
+    </ul>
+  </li>
+  <li><a href="#be-adaptable">Principle 4: Be Adaptable</a>
+    <ul>
+      <li><a href="#build-in-flexibility">Build in flexibility</a></li>
+      <li><a href="#encourage-feedback">Encourage feedback and contributions</a></li>
+      <li><a href="#regularly-review-and-update">Regularly review and update</a></li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="principle-1-be-accessible-">Principle 1: Be Accessible <a id="be-accessible" href="#be-accessible" class="permalink">🔗</a></h2>
+
+<p>The carbon and energy transition sectors have and will, for the foreseeable
+future, experience massive growth. This means those working on our target
+<a href="/use-cases">Use Cases</a> will generally always have
+more new people than experienced people.</p>
+
+<p>Given this bias towards new users, we must design our materials with a focus
+on making it easy for new users to learn our specifications. This principle is
+prioritized over following established precedents when those prior precedents
+are not accessible to new users.</p>
+
+<p>Below are some specific guidelines of how this principle manifests in our
+working group:</p>
+
+<h3 id="make-specifications-free-and-easily-referenced-">Make specifications free and easily referenced <a id="freely-accessible" href="#freely-accessible" class="permalink">🔗</a></h3>
+
+<p>Our <a href="/specs">specifications</a> will be published online for
+free and can be viewed by anyone without registration or payment.</p>
+
+<p>Additionally, each section of specifications and documentation will have permalinks,
+so that users can directly link to the specific part that they want to reference.</p>
+
+<h3 id="make-ample-complementary-documentation-and-materials-">Make ample complementary documentation and materials <a id="ample-documentation" href="#ample-documentation" class="permalink">🔗</a></h3>
+
+<p>By definition, our specifications must be comprehensive and, well, <em>specific</em>.
+This unfortunately means that the specifications themselves are complex and are
+probably not the most immediately readable thing for a new user.</p>
+
+<p>So, in addition to publishing our official specifications, we must make an effort
+to complement them with additional documentation and other materials that help
+introduce new users to the specifications, answer common questions, and provide
+examples and tutorials.</p>
+
+<h3 id="make-apis-and-data-structures-easily-understood-by-humans-">Make APIs and data structures easily understood by humans <a id="human-readable" href="#human-readable" class="permalink">🔗</a></h3>
+
+<p>Before a new user writes any client integration, they will typically first
+explore the documentation, examples, and tutorials to try to get familiar
+with how the various APIs, data models, and behaviors are structured. We want
+this initial exploring experience to be intuitive and require minimal time to
+get a basic understanding of how things work.</p>
+
+<p>To aid in that effort, we will be preferring simple, easy-to-understand, and
+human-readable field names and enumerations in our data models and API endpoints.
+This strategy prevents new users during their initial exploration from constantly
+having to go back and look up what various values mean. A new user should not
+have to write a line of code or install a mapping/lookup tool to achieve a basic
+familiarity with our specifications.</p>
+
+<p>Examples of preferred naming conventions:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">"id": "123456"</code> is preferred over <code class="language-plaintext highlighter-rouge">"objectEntryId": "123456"</code> (this is an unnecessarily complex field name)</li>
+  <li><code class="language-plaintext highlighter-rouge">"bill_total_cost": 100.25</code> is preferred over <code class="language-plaintext highlighter-rouge">"BILL_FIELD_004": 100.25</code> (where <code class="language-plaintext highlighter-rouge">"BILL_FIELD_004"</code> is mapped to bill total cost in a reference table)</li>
+  <li><code class="language-plaintext highlighter-rouge">"unit": "kwh"</code> is preferred over <code class="language-plaintext highlighter-rouge">"unit": 14</code> (where <code class="language-plaintext highlighter-rouge">14</code> is mapped to kilowatt hours in an enum table)</li>
+  <li><code class="language-plaintext highlighter-rouge">"updated": "2023-01-01T00:00:00Z"</code> is preferred over <code class="language-plaintext highlighter-rouge">"updated": 1672531200</code> (ISO times are more readable than unix timestamps)</li>
+</ul>
+
+<hr />
+
+<h2 id="principle-2-be-useful-">Principle 2: Be Useful <a id="be-useful" href="#be-useful" class="permalink">🔗</a></h2>
+
+<p>Our goal is to have our specifications be adopted and used widely to address
+our target <a href="/use-cases">Use Cases</a>. This means we must
+write our specifications in such a way that when implmented will actually be
+useful to the target organizations, communities, regulators, and stakeholders.</p>
+
+<p>Below are some strategies we will be using to ensure our specifications are useful:</p>
+
+<h3 id="focus-on-end-users-">Focus on end users <a id="focus-on-end-users" href="#focus-on-end-users" class="permalink">🔗</a></h3>
+
+<p>Our specifications will define how a server must operate so that a client user
+can integrate with it to access customer data, as well as how customers will
+interact with the server to review and approve data access requests from client
+users.</p>
+
+<p>In this situation, a common risk is to start losing track of the needs and
+preferences of the end users and trend towards biasing design decisions towards
+the preferences and conveniences of the server implementers and operators,
+even when those decisions reduce the usefulness or user-friendliness to end
+users (both third parties and utility customers).</p>
+
+<p>To mitigate this risk we must structure our discussion and decision making
+process with end user preferences as having priority over server implementer
+preferences. As with many things, decisions will be a balancing act of
+interests, but we must always evaluate our decisions with a preference to
+accomodating the end users’ needs wherever possible.</p>
+
+<h3 id="include-sanity-checks-">Include sanity checks <a id="sanity-checks" href="#sanity-checks" class="permalink">🔗</a></h3>
+
+<p>Another common risk when writing specifications is losing track of the needs
+and preferences of the majority of end users because much of the time in
+writing specifications is thinking about how to handle edge cases. If we are
+not careful, we could end up with specifications the overly focus on edge
+cases and not the primary user stories.</p>
+
+<p>To mitigate this risk, we must include in our discussions and processes
+“sanity checks” where we take a step back and re-evaluate our current drafts
+and decisions against the common use cases and user stories we are trying
+to address. These sanity checks can help us recognize when we are starting
+to lose track of our main target users’ experiences.</p>
+
+<p>Sanity checks can include the following exercises:</p>
+<ul>
+  <li>Writing down a specific user story that is a target use case and evaluating it against our specifications</li>
+  <li>“Play testing” where we discuss, simulate, or act out a situation that represents a common use case scenario</li>
+  <li>Testing out demo or even real-world server implementations for ease of use for end users</li>
+</ul>
+
+<h3 id="write-open-source-test-suites-">Write open source test suites <a id="test-suites" href="#test-suites" class="permalink">🔗</a></h3>
+
+<p>In the same spirit of performing sanity checks for our specifications,
+we must also remember that our specifications will be implemented in the
+real world and used by real users.</p>
+
+<p>To ensure that server implementations in the real world match our
+specifications, we must additionally develop a suite of both automated
+and manual tests that can be performed against demo and production
+server implementations to evaluate how closely they follow our
+specifications and how useful they are for end users.</p>
+
+<p>These test suites must be freely available, including access to any source
+code for automated test suites, under open source licenses. By being
+transparent with our testing procedures, both end users and server
+implementers can inspect and suggest improvements to the various test
+suites that we will maintain.</p>
+
+<hr />
+
+<h2 id="principle-3-be-realistic-">Principle 3: Be Realistic <a id="be-realistic" href="#be-realistic" class="permalink">🔗</a></h2>
+
+<p>The carbon accounting and energy industries are huge, complicated, and
+have a large diversity of regulatory constructs and business models.
+Sometimes, major groups and incentives in these industries will not
+necessarily align with our goals and <a href="/use-cases">Use Cases</a>.</p>
+
+<p>There could very well be significant resistance to implementations
+of our specifications, because some organizations, utilities, and
+potentially even entire sectors are incentivized in ways that are at odds
+with our goals and use cases.</p>
+
+<p>Therefore, we must be realistic about the policy environment and real
+world incentives when designing our specifications, so that they will still
+be widely adopted and useful to our use cases. Below are some specific
+actions we must take to successfully navigate the energy landscape.</p>
+
+<h3 id="dont-assume-a-motivated-implementer-">Don’t assume a motivated implementer <a id="dont-assume-motivated-implementer" href="#dont-assume-motivated-implementer" class="permalink">🔗</a></h3>
+
+<p>In some jurisdictions, it is possible that a utility may be ordered
+to implement our specifications by their regulator, despite the
+utility’s objections and resistance.</p>
+
+<p>In these situations, the server operator (e.g. the utility) will be
+tasked with creating an implementation of our specifications even
+though they are not strongly incentivized to make it highly useful.</p>
+
+<p>We must design our specifications with the realistic point of view
+that it may need to be implemented by organizations that are not
+strongly motivated to create a highly useful implementation, or are
+even “acting in bad faith” when implementing our specifications in
+an attempt to, indirectly or actively, prevent the implementation
+from gaining adoption or reaching its full potential.</p>
+
+<h3 id="create-materials-and-guidance-for-regulators-">Create materials and guidance for regulators <a id="regulatory-guidance" href="#regulatory-guidance" class="permalink">🔗</a></h3>
+
+<p>The energy utility sector is typically regulated by local, state,
+and federal governments, which means that many server implementers
+will be utilities or other central authorities who need to get
+approval from their regulators before implementing our specifications.</p>
+
+<p>To assist in educating, facilitating, and streamlining these
+regulatory requests for implementing our specifications, we must
+create regulatory informational and guidance materials the focus
+on regulatory and governance bodies as the target audience.</p>
+
+<p>This category is similar the first design principle’s guideline
+of <a href="#ample-documentation">creating ample complementary documentation</a>,
+only for the purpose of increasing accessibility for regulators and
+policy makers.</p>
+
+<hr />
+
+<h2 id="principle-4-be-adaptable-">Principle 4: Be Adaptable <a id="be-adaptable" href="#be-adaptable" class="permalink">🔗</a></h2>
+
+<p>The energy and carbon accounting sectors are constantly evolving,
+with new technologies, methods, and requirements emerging frequently.
+To ensure the longevity and relevance of our specifications, we must
+design them to be adaptable and responsive to changes in these sectors.</p>
+
+<h3 id="build-in-flexibility-">Build in flexibility <a id="build-in-flexibility" href="#build-in-flexibility" class="permalink">🔗</a></h3>
+
+<p>We must design our specifications to be flexible and extensible, allowing
+for the addition of new features and functionality over time without
+requiring significant changes to existing implementations (i.e. try
+to be backwards compatible). This includes using modular designs and
+providing clear guidance on how extensions can be integrated into
+the core specifications.</p>
+
+<h3 id="encourage-feedback-and-contributions-">Encourage feedback and contributions <a id="encourage-feedback" href="#encourage-feedback" class="permalink">🔗</a></h3>
+
+<p>We must promote an open and inclusive community that encourages
+feedback and contributions from a wide range of stakeholders. By
+actively soliciting input and engaging with different perspectives,
+we can ensure that our specifications remain relevant and useful in
+a changing landscape.</p>
+
+<h3 id="regularly-review-and-update-">Regularly review and update <a id="regularly-review-and-update" href="#regularly-review-and-update" class="permalink">🔗</a></h3>
+
+<p>We must establish a process for regular review and updates to the
+specifications to ensure they remain aligned with the latest
+developments in the energy and carbon accounting sectors. This
+includes monitoring changes in related standards and best practices,
+as well as incorporating feedback from the user community.</p>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-light pt-5 pb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h4>Customer Data Working Group:</h4>
+                        <ul>
+                            <li>
+                                <a href="/"
+                                    >Working Group website</a>
+                                (this website!)
+                            </li>
+                            <li>
+                                <a href="/use-cases"
+                                    >Use Cases</a>
+                            </li>
+                            <li>
+                                <a href="/specs"
+                                    >Specifications</a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/carbon-data-specification/Customer-Data" target="_blank"
+                                    >Github Repository
+                                    <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/carbon-data-specification/Customer-Data/tree/main/meetings" target="_blank"
+                                    >Meeting Minutes
+                                    <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/carbon-data-specification/Customer-Data/pulls" target="_blank"
+                                    >Active Pull Requests
+                                    <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
+                            </li>
+                            <li>
+                                <a href="https://lists.lfenergy.org/g/cdsc-customer-data-wg" target="_blank"
+                                    >Mailing List
+                                    <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
+                            </li>
+                            <li>
+                                <a href="https://lists.lfenergy.org/g/cdsc-customer-data-wg/calendar" target="_blank"
+                                    >Event Calendar
+                                    <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
+                            </li>
+                            <li>
+                                <a href="https://slack.lfenergy.org/" target="_blank"
+                                    >Slack
+                                    <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
+                                (channel: <code>#cdsc-customer-data-wg</code>)
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <h4>CDSC / Linux Foundation:</h4>
+                        <ul>
+                            <li>
+                                <a href="https://www.linuxfoundation.org/" target="_blank"
+                                    >Linux Foundation
+                                    <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
+                                <ul>
+                                    <li>
+                                        <a href="https://www.lfenergy.org/" target="_blank"
+                                            >LF Energy
+                                            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
+                                        <ul>
+                                            <li>
+                                                <a href="https://carbondataspec.org" target="_blank"
+                                                    >Carbon Data Specification Consortium (CDSC)
+                                                    <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
+                                                <ul>
+                                                    <li>
+                                                        <a href="https://github.com/carbon-data-specification/Customer-Data" target="_blank"
+                                                            >Customer Data Working Group (WG1)
+                                                            <svg class="svgicon"><use href="#fa-external-link"/></svg></a> (i.e. this working group)
+                                                    </li>
+                                                    <li>
+                                                        <a href="https://github.com/carbon-data-specification/Power-Systems-Data" target="_blank"
+                                                            >Power Systems Data Working Group (WG2)
+                                                            <svg class="svgicon"><use href="#fa-external-link"/></svg></a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scripts -->
+        <script src="/assets/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
+        
+        
+    </body>
+</html>
+
