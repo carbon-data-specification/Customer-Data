@@ -4,7 +4,7 @@ nav: home
 title: Customer Data Working Group
 meta_description: Linux Foundation Energy - Carbon Data Specification Consortium (CDSC) - Customer DataWorking Group (WG1)
 ---
-<img src="https://artwork.lfenergy.org/projects/cdsc/horizontal/color/cdsc-horizontal-color.svg" style="width:100%;max-width:30em;display:inline-block;margin-bottom:3em;">
+<img src="{{ '/assets/cdsc-logo-color.svg' | relative_url }}" style="width:100%;max-width:30em;display:inline-block;margin-bottom:3em;">
 
 # Customer Data Working Group (WG1)
 
