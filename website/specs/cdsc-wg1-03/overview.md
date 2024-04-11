@@ -494,6 +494,50 @@ Content-Type: application/json;charset=UTF-8
 }
 ```
 
+## Energy Attribute Certificate Endpoint <a id="eac-api" href="#eac-api" class="permalink">🔗</a>
+
+```
+==Request==
+GET /api/eacs HTTP/1.1
+Host: demoutility.com
+
+==Response==
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+
+{
+    "eacs": [
+        {
+            "cds_eac_id": "101010101-10",
+            "cds_created": "2024-01-01T00:00:00Z",
+            "cds_modified": "2024-01-01T00:00:00Z",
+            "eac_number": "AAAZZZ-123",
+            "source_id": "101010101-10aaa",
+            "source_name": "Company A",
+            "destination_id": "101010101-10zzz",
+            "destination_name": "Company B",
+            "beneficiary_id": "CUST123",
+            "program_type": "PPA",
+            "asset_id": "AP111111",
+            "asset_origination": "grid",
+            "asset_destination": "grid",
+            "technology_type": "solar",
+            "emissions_factor_direct": "TODO",
+            "emissions_factor_lca": "TODO",
+            "issuance_date": "2024-01-01",
+            "retirement_date": "2024-02-01",
+            "period_start": "2024-01-01T00:00:00Z",
+            "period_end": "2024-02-01T00:00:00Z",
+            "value": 1000000,
+            "unit": "kwh",
+        },
+        ...
+    ],
+    "next": null,
+    "previous": null
+}
+```
+
 
 ---
 

@@ -45,12 +45,15 @@ This specification defines how utilities and other central entities ("Servers") 
 * [11. Usage Segments API](#usage-segments-api)  
     * [11.1. Usage Segment Object Format](#usage-segment-format)  
     * [11.2. Listing Usage Segments](#usage-segment-list)  
-* [12. Extensions](#extensions)  
-* [13. Examples](#examples)  
-* [14. Security Considerations](#security)  
-* [15. References](#references)  
-* [16. Acknowledgments](#acknowledgments)  
-* [17. Authors' Addresses](#authors-addresses)  
+* [12. Energy Attribute Certificates API](#eac-api)  
+    * [12.1. Energy Attribute Certificate Object Format](#eac-format)  
+    * [12.2. Listing Energy Attribute Certificates](#eac-list)  
+* [13. Extensions](#extensions)  
+* [14. Examples](#examples)  
+* [15. Security Considerations](#security)  
+* [16. References](#references)  
+* [17. Acknowledgments](#acknowledgments)  
+* [18. Authors' Addresses](#authors-addresses)  
 
 ## 1. Introduction <a id="introduction" href="#introduction" class="permalink">🔗</a>
 
@@ -471,27 +474,75 @@ Servers MUST support Clients adding any of the following URL parameters to the `
 
 Listings of Usage Segments MUST be ordered in alphanumeric order by `aggregation_number`. In situations where relevant Usage Segments have the same `aggregation_number`, those Usage Segments with the same `aggregation_number` are further ordered in alphanumeric order by `account_number`. In situations where relevant Usage Segments have the same `account_number`, those Usage Segments with the same `account_number` are further ordered in alphanumeric order by `contract_number`. In situations where relevant Usage Segments have the same `contract_number`, those Usage Segments with the same `contract_number` are further ordered in chronological order by `segment_start`, where the relevant Usage Segment object with the earliest date is listed first. In situations where relevant Usage Segments have the same `segment_start`, those Usage Segments with the same `segment_start` are further ordered in reverse chronological order by `cds_modified`, where the most recently updated relevant Usage Segment object is listed first.
 
-## 12. Extensions <a id="extensions" href="#extensions" class="permalink">🔗</a>
+## 12. Energy Attribute Certificates API <a id="eac-api" href="#eac-api" class="permalink">🔗</a>
+
+This specification requires Servers provide a set of APIs allowing Clients to retrieve a Customer's and Server's Energy Attribute Certificate (EAC) objects for which they are authorized to access. These APIs are authenticated using a Bearer `access_token` [granted](/specs/cdsc-wg1-02#grants-api) that provisions access for a [scope](#authorization-scopes) that allows access to the Energy Attribute Certificates API.
+
+### 12.1. Energy Attribute Certificate Object Format <a id="eac-format" href="#eac-format" class="permalink">🔗</a>
+
+EAC objects are formatted as JSON objects and contain the following named values:
+
+* `cds_eac_id` - _string_ - (REQUIRED) The Server's unique identifier for this EAC object.
+* `cds_created` - _ISO8601 datetime_ - (REQUIRED) When the Server created this EAC object.
+* `cds_modified` - _ISO8601 datetime_ - (REQUIRED) When the Server last modified this EAC object.
+* `eac_number` - _string or `null`_ - (REQUIRED) The EAC identifier that a Client or Customer sees in Server documentation, Customer documents, or other interfaces as the identifier for this EAC, if available. If a Server does not have a Client or Customer-facing EAC identifier and the Client is not authorized to see the Server's internal EAC identifier for this EAC, or the Server does not have identifiers stored for this EAC, this value is `null`.
+* `source_id` - _string_ - (REQUIRED) The EAC's source identifier. The EAC source is defined as the organization who owns issuance of the EAC.
+* `source_name` - _string_ - (REQUIRED) The EAC source's organization name.
+* `destination_id` - _string_ - (REQUIRED) The EAC's destination identifier. The EAC destination is defined as the organization responsible for retirement of the EAC.
+* `destination_name` - _string_ - (REQUIRED) The EAC destination's organization name.
+* `beneficiary_id` - _string_ - (REQUIRED) The Customer identifier or program name to allocate pro-rata to customers in the program.
+* `program_type` - _[ProgramType](#program-types)_ - (REQUIRED) The type of program to which this EAC is applied.
+* `asset_id` - _string_ - (REQUIRED) The generation asset's identifier.
+* `asset_origination` - _[AssetLocationType](#eac-asset-location-types)_ - (REQUIRED) From where the asset's generation is originated.
+* `asset_destination` - _[AssetLocationType](#eac-asset-location-types)_ - (REQUIRED) To where the asset's generation is destined.
+* `technology_type` - _[TechnologyType](#eac-technology-types)_ - (REQUIRED) The type of technology used for generating the EAC.
+* `emissions_factor_direct` - _decimal_ - (REQUIRED) <span style="background-color:yellow">TODO:definition</span>.
+* `emissions_factor_lca` - _decimal_ - (REQUIRED) <span style="background-color:yellow">TODO:definition</span>.
+* `issuance_date` - _ISO8601 date_ - (REQUIRED) What day the EAC was issued.
+* `retirement_date` - _ISO8601 date or `null`_ - (REQUIRED) What day the EAC was retired. If the EAC has not yet been retired, this value is `null`.
+* `period_start` - _ISO8601 datetime_ - (REQUIRED) When the EAC period started.
+* `period_end` - _ISO8601 datetime_ - (REQUIRED) When the EAC period ended or will end.
+* `value` - _decimal_ - (REQUIRED) The quantity of the EAC.
+* `unit` - _[Unit](#unit-types)_ - (REQUIRED) The unit of the EAC's quantity.
+
+### 12.2. Listing Energy Attribute Certificates <a id="eac-list" href="#eac-list" class="permalink">🔗</a>
+
+Clients may request to list EAC objects that they have access to by making an HTTPS `GET` request, authenticated with a valid Bearer `access_token` that is scoped to provide access to a set of EACs, to the `cds_eacs_api` URL included in the [Client Registration Response](/specs/cdsc-wg1-02/#registration-response) or [Clients API](/specs/cdsc-wg1-02/#client-format). The EAC object listing request responses are formatted as JSON objects and contain the following named values.
+
+* `eacs` - _Array[[EnergyAttributeCredit](#eac-format)]_ - (REQUIRED) A list of EACs to which the requesting `access_token` is scoped to have access. If no EACs are accessible, this value is an empty list (`[]`). If more than 100 EACs are available to be listed, Servers MAY truncate the list and use the `next` value to link to the next segment of the list of EACs.
+* `next` - _URL_ or `null` - Where to request the next segment of the list of EACs. If no next segment exists (i.e. the requester is at the end of the list), this value is `null`.
+* `previous` - _URL_ or `null` - Where to request the previous segment of the list of EACs. If no previous segment exists (i.e. the requester is at the front of the list), this value is `null`.
+
+Servers MUST support Clients adding any of the following URL parameters to the `GET` request, which will filter the list of EACs to be the intersection of results for each of the URL parameters filters:
+
+* `cds_eac_ids` - A space-separated list of `cds_eac_id` values for which the Servers MUST filter the EACs.
+* `eac_numbers` - A space-separated list of `eac_number` values for which the Servers MUST filter the EACs.
+* `before` - An ISO8601 datetime for which the Server MUST filter the EAC object `issuance_date` to values that are on or before this date.
+* `after` - An ISO8601 datetime for which the Server MUST filter the EAC object `issuance_date` to values that are on or after this date.
+
+Listings of EACs MUST be ordered in alphanumeric order by `eac_number`. In situations where relevant EACs have the same `eac_number`, those EACs with the same `eac_number` are further ordered in reverse chronological order by `issuance_date`, where the most recently issued EAC is first.
+
+## 13. Extensions <a id="extensions" href="#extensions" class="permalink">🔗</a>
 
 <span style="background-color:yellow">TODO</span>
 
-## 13. Examples <a id="examples" href="#examples" class="permalink">🔗</a>
+## 14. Examples <a id="examples" href="#examples" class="permalink">🔗</a>
 
 <span style="background-color:yellow">TODO</span>
 
-## 14. Security Considerations <a id="security" href="#security" class="permalink">🔗</a>
+## 15. Security Considerations <a id="security" href="#security" class="permalink">🔗</a>
 
 <span style="background-color:yellow">TODO</span>
 
-## 15. References <a id="references" href="#references" class="permalink">🔗</a>
+## 16. References <a id="references" href="#references" class="permalink">🔗</a>
 
 <span style="background-color:yellow">TODO</span>
 
-## 16. Acknowledgments <a id="acknowledgments" href="#acknowledgments" class="permalink">🔗</a>
+## 17. Acknowledgments <a id="acknowledgments" href="#acknowledgments" class="permalink">🔗</a>
 
 The authors would like to thank the late Shuli Goodman, who was the Executive Director of LFEnergy, for her incredible leadership in initially organizing the Carbon Data Specification.
 
-## 17. Authors' Addresses <a id="authors-addresses" href="#authors-addresses" class="permalink">🔗</a>
+## 18. Authors' Addresses <a id="authors-addresses" href="#authors-addresses" class="permalink">🔗</a>
 
 Daniel Roesler  
 UtilityAPI  
