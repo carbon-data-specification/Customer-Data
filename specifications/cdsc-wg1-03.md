@@ -437,17 +437,19 @@ Usage Segment objects are formatted as JSON objects and contain the following na
 * `cds_usagesegment_id` - _string_ - (REQUIRED) The Server's unique identifier for this Usage Segment object.
 * `cds_created` - _ISO8601 datetime_ - (REQUIRED) When the Server created this Usage Segment object.
 * `cds_modified` - _ISO8601 datetime_ - (REQUIRED) When the Server last modified this Usage Segment object.
-* `cds_aggregation_ids`
-* `cds_account_ids`
-* `cds_servicecontract_ids`
-* `cds_servicepoint_ids`
-* `cds_meterdevice_ids`
-* `cds_billsection_ids`
-* `segment_start`
-* `segment_end`
-* `interval`
-* `format`
-* `values`
+* `related_aggregations` - _Array[`cds_aggregation_id`]_ - (REQUIRED) The list of Aggregation unique identifiers to which this Usage Segment is applicable.
+* `related_accounts` - _Array[`cds_account_id`]_ - (REQUIRED) The list of Account unique identifiers to which this Usage Segment is applicable.
+* `related_servicecontracts` - _Array[`cds_servicecontract_id`]_ - (REQUIRED) The list of Service Contract unique identifiers to which this Usage Segment is applicable.
+* `related_servicepoints` - _Array[`cds_servicepoint_id`]_ - (REQUIRED) The list of Service Point unique identifiers to which this Usage Segment is applicable.
+* `related_meterdevices` - _Array[`cds_meterdevice_id`]_ - (REQUIRED) The list of Meter Device unique identifiers to which this Usage Segment is applicable.
+* `related_billsections` - _Array[`cds_billsection_id`]_ - (REQUIRED) The list of Bill Section unique identifiers to which this Usage Segment is applicable.
+* `segment_start` - _ISO8601 datetime_ - (REQUIRED) The starting timestamp for the list of Usage Segment `values`.
+* `segment_end` - _ISO8601 datetime_ - (REQUIRED) The ending timestamp for the list of Usage Segment `values`. For values that represent a duration (e.g. 15-min usage interval reading), the `segment_end` MUST represent the timestamp at the end of the duration.
+* `interval` - _decimal_ - (REQUIRED) How long between values, in seconds. For values representing a duration interval (e.g. kwh usage intervals), this `interval` represents the duration of each interval, where the next value starts immediately at the end of the prior interval value with no time gap. For values representing instantaneous readings (e.g. register read), this `interval` represents the time between the readings provided in the `values`.
+* `format` - _Array[[ValueFormat](#usage-segment-value-format)]_ - (REQUIRED) For each entry in `values`, these are the formats of that are included, presented in the order in which the values are presented.
+* `values` - _Array[[ValueSet](#usage-segment-value-set-format)]_ - (REQUIRED) A list of Value Sets that represent the entries included in the Usage Segment.
+
+Servers MUST only inlude unique identifiers in `related_aggregations`, `related_accounts`, `related_servicecontracts`, `related_servicepoints`, `related_meterdevices`, and `related_billsections` lists MUST only include identifiers that the Client is authorized to see as scoped by their requesting `access_token`.
 
 ### 11.2. Listing Usage Segments <a id="usage-segment-list" href="#usage-segment-list" class="permalink">🔗</a>
 
@@ -548,4 +550,3 @@ Daniel Roesler
 UtilityAPI  
 Email: [daniel@utilityapi.com](mailto:daniel@utilityapi.com)  
 URI: [https://utilityapi.com/](https://utilityapi.com/)
-

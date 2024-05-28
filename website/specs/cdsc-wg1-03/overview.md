@@ -462,21 +462,20 @@ Content-Type: application/json;charset=UTF-8
             "cds_usagesegment_id": "99999999-99",
             "cds_created": "2024-01-01T00:00:00Z",
             "cds_modified": "2024-01-01T00:00:00Z",
-            "cds_aggregation_ids": [],
-            "cds_account_ids": [
+            "related_aggregations": [],
+            "related_accounts": [
                 "111111111111-1",
             ],
-            "cds_servicecontract_ids": [
+            "related_servicecontracts": [
                 "3333333333-33",
             ],
-            "cds_servicepoint_ids": [
+            "related_servicepoints": [
                 "444444444-44"
             ],
-            "cds_meterdevice_ids": [
+            "related_meterdevices": [
                 "55555555-55",
             ]
-            "cds_billsection_ids": [],
-
+            "related_billsections": [],
             "segment_start": "2023-12-01T00:00:00Z",
             "segment_end": "2024-01-01T00:00:00Z",
             "interval": 900,
