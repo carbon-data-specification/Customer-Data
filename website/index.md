@@ -2,13 +2,13 @@
 layout: base
 nav: home
 title: Customer Data Working Group
-meta_description: Linux Foundation Energy - Carbon Data Specification Consortium (CDSC) - Customer DataWorking Group (WG1)
+meta_description: Linux Foundation Energy - Carbon Data Specification Consortium (CDSC) - Customer Data Working Group (WG3)
 ---
 <img src="{{ '/assets/cdsc-logo-color.svg' | relative_url }}" style="width:100%;max-width:30em;display:inline-block;margin-bottom:3em;">
 
-# Customer Data Working Group (WG1)
+# Customer Data Working Group (WG3)
 
-This is the homepage of the [Customer Data Working Group (WG1)](https://github.com/carbon-data-specification/Customer-Data),
+This is the homepage of the [Customer Data Working Group (WG3)](https://github.com/carbon-data-specification/Customer-Data),
 part of the
 [Carbon Data Specification Consortium (CDSC)](https://www.lfenergy.org/projects/carbon-data-specification-cds/),
 an [LF Energy](https://www.lfenergy.org/) project.
@@ -35,7 +35,13 @@ We've also made a list of what data and functionality is specifically [not in sc
 
 These are the official [specifications]({{ "/specs" | relative_url }}) written by this working group.
 
-{% include spec_list.md %}
+* `CDSC-WG3-01` - Customer Data [[Overview]({{ "/specs/cdsc-wg3-01/overview" | relative_url }})] [[Specification]({{ "/specs/cdsc-wg3-01" | relative_url }})] `(in progress)`
+
+If you would like to contribute to these specifications, please see our docs on [Contributing]({{ "/" | relative_url }}#contributing) and [Design Principles]({{ "specs/design-principles" | relative_url }}).
+
+Previously moved specifications:  
+<span style="text-decoration: line-through;">`CDSC-WG1-01` - Server Metadata [[Overview](https://connectivity.carbondataspec.org/specs/cdsc-wg1-01/overview)] [[Specification](https://connectivity.carbondataspec.org/specs/cdsc-wg1-01)]</span> (Moved to Connectivity Working Group's [`CDSC-WG1-01`](https://connectivity.carbondataspec.org/specs/cdsc-wg1-01))  
+<span style="text-decoration: line-through;">`CDSC-WG1-02` - Client Registration [[Overview](https://connectivity.carbondataspec.org/specs/cdsc-wg1-02/overview)] [[Specification](https://connectivity.carbondataspec.org/specs/cdsc-wg1-02)]</span> (Moved to Connectivity Working Group's [`CDSC-WG1-02`](https://connectivity.carbondataspec.org/specs/cdsc-wg1-02))
 
 ## Contributing <a id="contributing" href="#contributing" class="permalink">🔗</a>
 

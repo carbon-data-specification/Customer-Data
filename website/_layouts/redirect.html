@@ -1,0 +1,17 @@
+<html>
+    {% if page.relative_url %}
+        {% assign to_url = page.relative_url | absolute_url %}
+    {% else %}
+        {% assign to_url = page.absolute_url %}
+    {% endif %}
+    <head>
+        <meta charset="utf-8">
+        <link rel="canonical" href="{{ to_url }}">
+        <meta http-equiv="refresh" content="0;url={{ to_url }}">
+        <script>window.location.href = "{{ to_url }}";</script>
+    </head>
+    <body>
+        This page has moved to <a href='{{ to_url }}'>{{ to_url }}</a> (Redirecting...)
+    </body>
+</html>
+

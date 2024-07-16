@@ -1,1 +1,1 @@
-`[No main draft available yet]` See [Other Drafts](#other-drafts) section for in-progress and alternative drafts
+This specification has moved to https://github.com/carbon-data-specification/Customer-Data/blob/main/specifications/cdsc-wg3-01.md
