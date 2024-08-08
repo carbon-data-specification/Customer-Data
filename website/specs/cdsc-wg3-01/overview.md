@@ -537,13 +537,375 @@ Content-Type: application/json;charset=UTF-8
 }
 ```
 
-## Examples for various situations
+## Examples for various situations <a id="examples" href="#examples" class="permalink">🔗</a>
 
-#### Meter with monthly usage readings (e.g. AMR meters) <a id="example-amr" href="#example-amr" class="permalink">🔗</a>
+#### Meter usage with monthly readings (e.g. AMR meters) <a id="example-amr" href="#example-amr" class="permalink">🔗</a>
 <details>
-<summary>Show</summary>
-<pre>
-test
+<summary>Show example</summary>
+<pre class="highlight">
+<code>
+GET /api/usagesegments
+{
+    "usage_segments": [
+        {
+            "cds_usagesegment_id": "99999999-ab",
+            "cds_created": "2025-01-01T00:00:00Z",
+            "cds_modified": "2025-01-01T00:00:00Z",
+            "related_aggregations": [...],
+            "related_accounts": [...],
+            "related_servicecontracts": [...],
+            "related_servicepoints": [...],
+            "related_meterdevices": [...],
+            "related_billsections": [...],
+            "related_eacs": [...],
+            "segment_start": "2024-01-15T00:00:00Z",
+            "segment_end": "2024-02-15T00:00:00Z",
+            "interval": 2678400,
+            "format": ["kwh_fwd"],
+            "values": [
+                [
+                    {"v": 500.0}
+                ]
+            ],
+        },
+        {
+            "cds_usagesegment_id": "99999999-z3",
+            "cds_created": "2025-01-01T00:00:00Z",
+            "cds_modified": "2025-01-01T00:00:00Z",
+            "related_aggregations": [],
+            "related_accounts": [...],
+            "related_servicecontracts": [...],
+            "related_servicepoints": [...],
+            "related_meterdevices": [...],
+            "related_billsections": [...],
+            "related_eacs": [...],
+            "segment_start": "2024-02-15T00:00:00Z",
+            "segment_end": "2024-03-15T00:00:00Z",
+            "interval": 2505600,
+            "format": ["kwh_fwd"],
+            "values": [
+                [
+                    {"v": 450.0}
+                ]
+            ],
+        },
+        ...
+    ],
+    "next": null,
+    "previous": null
+}
+</code>
+</pre>
+</details>
+
+
+#### Meter usage with interval readings (e.g. AMI meters) <a id="example-ami" href="#example-ami" class="permalink">🔗</a>
+<details>
+<summary>Show example</summary>
+<pre class="highlight">
+<code>
+GET /api/usagesegments
+{
+    "usage_segments": [
+        {
+            "cds_usagesegment_id": "99999999-3c",
+            "cds_created": "2025-01-01T00:00:00Z",
+            "cds_modified": "2025-01-01T00:00:00Z",
+            "related_aggregations": [...],
+            "related_accounts": [...],
+            "related_servicecontracts": [...],
+            "related_servicepoints": [...],
+            "related_meterdevices": [...],
+            "related_billsections": [...],
+            "related_eacs": [...],
+            "segment_start": "2024-01-15T00:00:00Z",
+            "segment_end": "2024-02-15T00:00:00Z",
+            "interval": 900,
+            "format": ["kwh_fwd"],
+            "values": [
+                [
+                    {"v": 1.24}
+                ],
+                [
+                    {"v": 1.01}
+                ],
+                ... # 2,976 entries total (one for each 15-minute segment)
+            ],
+        },
+        ...
+    ],
+    "next": null,
+    "previous": null
+}
+</code>
+</pre>
+</details>
+
+#### Net meter usage (e.g. AMI meter + distributed generation) <a id="example-net" href="#example-net" class="permalink">🔗</a>
+<details>
+<summary>Show example</summary>
+<pre class="highlight">
+<code>
+GET /api/usagesegments
+{
+    "usage_segments": [
+        {
+            "cds_usagesegment_id": "99999999-349",
+            "cds_created": "2025-01-01T00:00:00Z",
+            "cds_modified": "2025-01-01T00:00:00Z",
+            "related_aggregations": [...],
+            "related_accounts": [...],
+            "related_servicecontracts": [...],
+            "related_servicepoints": [...],
+            "related_meterdevices": [...],
+            "related_billsections": [...],
+            "related_eacs": [...],
+            "segment_start": "2024-01-15T00:00:00Z",
+            "segment_end": "2024-02-15T00:00:00Z",
+            "interval": 3600,
+            "format": ["kwh_net", "kwh_fwd", "kwh_rev"],
+            "values": [
+                [
+                    {"v": 1.50},
+                    {"v": 2.00},
+                    {"v": -0.50}
+                ],
+                [
+                    {"v": 1.00},
+                    {"v": 2.00},
+                    {"v": -1.00}
+                ],
+                ... # 744 entries total (one for each 1-hour segment)
+            ],
+        },
+        ...
+    ],
+    "next": null,
+    "previous": null
+}
+</code>
+</pre>
+</details>
+
+#### Interval meter with interval-level supply mix <a id="example-interval-supply-mix" href="#example-interval-supply-mix" class="permalink">🔗</a>
+<details>
+<summary>Show example</summary>
+<pre class="highlight">
+<code>
+GET /api/usagesegments
+{
+    "usage_segments": [
+        {
+            "cds_usagesegment_id": "99999999-349",
+            "cds_created": "2025-01-01T00:00:00Z",
+            "cds_modified": "2025-01-01T00:00:00Z",
+            "related_aggregations": [...],
+            "related_accounts": [...],
+            "related_servicecontracts": [...],
+            "related_servicepoints": [...],
+            "related_meterdevices": [...],
+            "related_billsections": [...],
+            "related_eacs": [...],
+            "segment_start": "2024-01-15T00:00:00Z",
+            "segment_end": "2024-02-15T00:00:00Z",
+            "interval": 3600,
+            "format": ["kwh_fwd", "supply_mix"],
+            "values": [
+                [
+                    {"v": 2.00},
+                    [
+                        {"type": "solar", "mix": 0.5},
+                        {"type": "wind", "mix": 0.5}
+                    ]
+                ],
+                [
+                    {"v": 1.50},
+                    [
+                        {"type": "solar", "mix": 0.5},
+                        {"type": "wind", "mix": 0.5}
+                    ]
+                ],
+                ... # 744 entries total (one for each 1-hour segment)
+            ],
+        },
+        ...
+    ],
+    "next": null,
+    "previous": null
+}
+</code>
+</pre>
+</details>
+
+
+#### Interval meter with monthly supply mix <a id="example-monthly-supply-mix" href="#example-monthly-supply-mix" class="permalink">🔗</a>
+<details>
+<summary>Show example</summary>
+<pre class="highlight">
+<code>
+GET /api/usagesegments
+{
+    "usage_segments": [
+        {
+            "cds_usagesegment_id": "99999999-3c",
+            "cds_created": "2025-01-01T00:00:00Z",
+            "cds_modified": "2025-01-01T00:00:00Z",
+            "related_aggregations": [...],
+            "related_accounts": [...],
+            "related_servicecontracts": [...],
+            "related_servicepoints": [...],
+            "related_meterdevices": [...],
+            "related_billsections": [...],
+            "related_eacs": [...],
+            "segment_start": "2024-01-15T00:00:00Z",
+            "segment_end": "2024-02-15T00:00:00Z",
+            "interval": 3600,
+            "format": ["kwh_fwd"],
+            "values": [
+                [
+                    {"v": 1.24}
+                ],
+                [
+                    {"v": 1.01}
+                ],
+                ... # 744 entries total (one for each 1-hour segment)
+            ],
+        },
+        {
+            "cds_usagesegment_id": "99999999-x5z",
+            "cds_created": "2025-01-01T00:00:00Z",
+            "cds_modified": "2025-01-01T00:00:00Z",
+            "related_aggregations": [...],
+            "related_accounts": [...],
+            "related_servicecontracts": [...],
+            "related_servicepoints": [...],
+            "related_meterdevices": [...],
+            "related_billsections": [...],
+            "related_eacs": [...],
+            "segment_start": "2024-01-15T00:00:00Z",
+            "segment_end": "2024-02-15T00:00:00Z",
+            "interval": 2678400,
+            "format": ["supply_mix"],
+            "values": [
+                [
+                    [
+                        {"type": "solar", "mix": 0.25},
+                        {"type": "wind", "mix": 0.5},
+                        {"type": "other", "mix": 0.25},
+                    ]
+                ]
+            ],
+        },
+        ...
+    ],
+    "next": null,
+    "previous": null
+}
+</code>
+</pre>
+</details>
+
+#### Interval meter with monthly EAC <a id="example-eacs" href="#example-eacs" class="permalink">🔗</a>
+<details>
+<summary>Show example</summary>
+<pre class="highlight">
+<code>
+GET /api/usagesegments
+{
+    "usage_segments": [
+        {
+            "cds_usagesegment_id": "99999999-6j",
+            "cds_created": "2025-01-01T00:00:00Z",
+            "cds_modified": "2025-01-01T00:00:00Z",
+            "related_aggregations": [...],
+            "related_accounts": [...],
+            "related_servicecontracts": [...],
+            "related_servicepoints": [...],
+            "related_meterdevices": [...],
+            "related_billsections": [...],
+            "related_eacs": [...],
+            "segment_start": "2024-01-15T00:00:00Z",
+            "segment_end": "2024-02-15T00:00:00Z",
+            "interval": 3600,
+            "format": ["kwh_fwd"],
+            "values": [
+                [
+                    {"v": 1.24}
+                ],
+                [
+                    {"v": 1.01}
+                ],
+                ... # 744 entries total (one for each 1-hour segment)
+            ],
+        },
+        {
+            "cds_usagesegment_id": "99999999-vc3",
+            "cds_created": "2025-01-01T00:00:00Z",
+            "cds_modified": "2025-01-01T00:00:00Z",
+            "related_aggregations": [...],
+            "related_accounts": [...],
+            "related_servicecontracts": [...],
+            "related_servicepoints": [...],
+            "related_meterdevices": [...],
+            "related_billsections": [...],
+            "related_eacs": ["99999999-dk3"],
+            "segment_start": "2024-01-01T00:00:00Z",
+            "segment_end": "2024-02-01T00:00:00Z",
+            "interval": 2678400,
+            "format": ["kwh_fwd"],
+            "values": [
+                [
+                    {"v": 580.0}
+                ]
+            ],
+        },
+        ...
+    ],
+    "next": null,
+    "previous": null
+}
+
+GET /api/eacs
+{
+    "eacs": [
+        {
+            "cds_eac_id": "99999999-dk3",
+            "cds_created": "2024-01-01T00:00:00Z",
+            "cds_modified": "2024-01-01T00:00:00Z",
+            "related_aggregations": [...],
+            "related_accounts": [...],
+            "related_servicecontracts": [...],
+            "related_servicepoints": [...],
+            "related_meterdevices": [...],
+            "related_aggregations": [],
+            "related_usagesegments": ["99999999-vc3"],
+            "eac_number": "AAAZZZ-123",
+            "source_id": "101010101-10aaa",
+            "source_name": "Company A",
+            "destination_id": "101010101-10zzz",
+            "destination_name": "Company B",
+            "beneficiary_id": "CUST123",
+            "program_type": "PPA",
+            "asset_id": "AP111111",
+            "asset_origination": "grid",
+            "asset_destination": "grid",
+            "technology_type": "solar",
+            "emissions_factor_direct": "TODO",
+            "emissions_factor_lca": "TODO",
+            "issuance_date": "2024-01-01",
+            "retirement_date": "2024-02-01",
+            "period_start": "2024-01-01T00:00:00Z",
+            "period_end": "2024-02-01T00:00:00Z",
+            "value": 580.0,
+            "unit": "kwh",
+        },
+        ...
+    ],
+    "next": null,
+    "previous": null
+}
+
+</code>
 </pre>
 </details>
 
