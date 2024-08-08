@@ -537,6 +537,15 @@ Content-Type: application/json;charset=UTF-8
 }
 ```
 
+## Examples for various situations
+
+#### Meter with monthly usage readings (e.g. AMR meters) <a id="example-amr" href="#example-amr" class="permalink">🔗</a>
+<details>
+<summary>Show</summary>
+<pre>
+test
+</pre>
+</details>
 
 ---
 
