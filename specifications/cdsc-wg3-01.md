@@ -47,7 +47,11 @@ This specification defines how utilities and other central entities ("Servers") 
     * [11.2. Listing Usage Segments](#usage-segment-list)  
 * [12. Energy Attribute Certificates API](#eac-api)  
     * [12.1. Energy Attribute Certificate Object Format](#eac-format)  
-    * [12.2. Listing Energy Attribute Certificates](#eac-list)  
+    * [12.2. Beneficiary Types](#eac-beneficiary-types)  
+    * [12.3. Asset Location Types](#eac-asset-location-types)  
+    * [12.4. Technology Types](#eac-technology-types)  
+    * [12.5. EAC Values](#eac-values)  
+    * [12.6. Listing Energy Attribute Certificates](#eac-list)  
 * [13. Extensions](#extensions)  
 * [14. Examples](#examples)  
 * [15. Security Considerations](#security)  
@@ -137,6 +141,7 @@ Account objects are formatted as JSON objects and contain the following named va
 * `cds_created` - _ISO8601 datetime_ - (REQUIRED) When the Server created this Account object.
 * `cds_modified` - _ISO8601 datetime_ - (REQUIRED) When the Server last modified this Account object.
 * `cds_account_parent` - _string or `null`_ - (REQUIRED) The `cds_account_id` of a parent Account object of which this Account is grouped under. If the Account is not a part of a parent grouping, this value is `null`.
+* `customer_number` - _string or `null`_ - (REQUIRED) The identifier that a Customer has access to that identifies a collection of Accounts as being for the same Customer. If a Server only stores Accounts as the top-level identifier for Customers, or does not have a Customer-accessible identifier set for this Account, this value is `null`.
 * `account_number` - _string_ - (REQUIRED) The number that a Customer sees on their bill and online user interface as the identifier for this Account.
 * `account_name` - _string_ - (OPTIONAL) The name that a Customer sees on their bill and online user interface as the name for this Account, if available.
 * `account_address` - _multi-line address_ - (OPTIONAL) The address that a Customer sees on their bill and online user interface as the address for this Account, if available.
@@ -154,9 +159,11 @@ Clients may request to list Account objects that they have access to by making a
 Servers MUST support Clients adding any of the following URL parameters to the `GET` request, which will filter the list of Accounts to be the intersection of results for each of the URL parameters filters:
 
 * `cds_account_ids` - A space-separated list of `cds_account_id` values for which the Servers MUST filter the Accounts.
+* `customer_numbers` - A space-separated list of `customer_number` values for which the Servers MUST filter the Accounts. Customer number values of `null` MUST be treated as invalid for this URL parameter filter (i.e. only populated `customer_number` values are available to be filtered using URL parameters).
 * `account_numbers` - A space-separated list of `account_number` values for which the Servers MUST filter the Accounts.
 * `q` - A search term for which the Servers MUST filter the Accounts following fields for values that case-insensitive contains the search term, if the field is accessible based on the Client's `access_token` scope.
     * `cds_account_id`
+    * `customer_number`
     * `account_number`
     * `account_address`
     * `account_name`
@@ -491,23 +498,63 @@ EAC objects are formatted as JSON objects and contain the following named values
 * `source_id` - _string_ - (REQUIRED) The EAC's source identifier. The EAC source is defined as the organization who owns issuance of the EAC.
 * `source_name` - _string_ - (REQUIRED) The EAC source's organization name.
 * `destination_id` - _string_ - (REQUIRED) The EAC's destination identifier. The EAC destination is defined as the organization responsible for retirement of the EAC.
-* `destination_name` - _string_ - (REQUIRED) The EAC destination's organization name.
-* `beneficiary_id` - _string_ - (REQUIRED) The Customer identifier or program name to allocate pro-rata to customers in the program.
-* `program_type` - _[ProgramType](#program-types)_ - (REQUIRED) The type of program to which this EAC is applied.
+* `destination_name` - _string_ - (REQUIRED) The EAC destination's organization name. For utilities that are operating their own Servers, this value is typically the name of the utility.
+* `beneficiary_type` - _[BeneficiaryType](#eac-beneficiary-types)_ - (REQUIRED) The type of beneficiary to which this EAC is applied (e.g. an individual customer's PPA.
+* `beneficiaries` - _Array[string]_ - (REQUIRED) The list of Customer identifier, rate plan, or program name to allocate the EAC.
 * `asset_id` - _string_ - (REQUIRED) The generation asset's identifier.
 * `asset_origination` - _[AssetLocationType](#eac-asset-location-types)_ - (REQUIRED) From where the asset's generation is originated.
 * `asset_destination` - _[AssetLocationType](#eac-asset-location-types)_ - (REQUIRED) To where the asset's generation is destined.
 * `technology_type` - _[TechnologyType](#eac-technology-types)_ - (REQUIRED) The type of technology used for generating the EAC.
 * `emissions_factor_direct` - _decimal_ - (REQUIRED) <span style="background-color:yellow">TODO:definition</span>.
 * `emissions_factor_lca` - _decimal_ - (REQUIRED) <span style="background-color:yellow">TODO:definition</span>.
-* `issuance_date` - _ISO8601 date_ - (REQUIRED) What day the EAC was issued.
-* `retirement_date` - _ISO8601 date or `null`_ - (REQUIRED) What day the EAC was retired. If the EAC has not yet been retired, this value is `null`.
 * `period_start` - _ISO8601 datetime_ - (REQUIRED) When the EAC period started.
 * `period_end` - _ISO8601 datetime_ - (REQUIRED) When the EAC period ended or will end.
-* `value` - _decimal_ - (REQUIRED) The quantity of the EAC.
-* `unit` - _[Unit](#unit-types)_ - (REQUIRED) The unit of the EAC's quantity.
+* `values` - _Array[[EnergyAttributeValues](#eac-values)]_
 
-### 12.2. Listing Energy Attribute Certificates <a id="eac-list" href="#eac-list" class="permalink">🔗</a>
+### 12.2. Beneficiary Types <a id="eac-beneficiary-types" href="#eac-beneficiary-types" class="permalink">🔗</a>
+
+EAC object `beneficiary_type` values MUST be one of the following:
+
+* `customer` - Within the EAC's destination, the EAC is further applied to an individual Power Purchase Agreement (PPA) for a set of Customers. When the `beneficiary_type` is `customer`, the `beneficiaries` MUST have values of the relevant `customer_number` values. NOTE: listed `customer_number` values MUST be authorized to be visible to the Client, so while the destination MAY allocate beneficiaries of the EAC to multiple customers, only the customer numbers that are available to be seen as part of the Client's authorization MUST be listed.
+* `account` - Within the EAC's destination, the EAC is further applied to an individual Power Purchase Agreement (PPA) for a set of Customer accounts. When the `beneficiary_type` is `account`, the `beneficiaries` MUST have values of the relevant `cds_account_id` values. NOTE: listed `cds_account_id` values MUST be authorized to be visible to the Client, so while the destination MAY allocate beneficiaries of the EAC to multiple accounts, only the accounts that are available to be seen as part of the Client's authorization MUST be listed.
+* `servicecontract` - Within the EAC's destination, the EAC is further applied to an individual Power Purchase Agreement (PPA) for a set of Customer service contracts. When the `beneficiary_type` is `servicecontract`, the `beneficiaries` MUST have values of the relevant `cds_servicecontract_id` values. NOTE: listed `cds_servicecontract_id` values MUST be authorized to be visible to the Client, so while the destination MAY allocate beneficiaries of the EAC to multiple contracts, only the service contracts that are available to be seen as part of the Client's authorization MUST be listed.
+* `rateplan` - Within the EAC's destination, the EAC is further applied to a rate plan or tariff for the customers with service contracts on that rate plan. When the `beneficiary_type` is `rateplan`, the `beneficiaries` MUST have the value of the relevant `rateplan_code` values. NOTE: listed `rateplan_code` values MUST be authorized to be visible to the Client, so while the destination MAY allocate beneficiaries of the EAC to multiple rate plans or tariffs, only the rate plans that are available to be seen as part of the Client's authorization MUST be listed.
+* `program` - Within the EAC's destination, the EAC is further applied to a special program in which customers are participating. When the `beneficiary_type` is `program`, the `beneficiaries` MUST have the value of the relevant `program_id` values. NOTE: listed `program_id` values MUST be authorized to be visible to the Client, so while the destination MAY allocate beneficiaries of the EAC to multiple special programs, only the rate plans that are available to be seen as part of the Client's authorization MUST be listed.
+* `general` - Within the EAC's destination, the EAC is applied generally to the base energy usage profile for all customers. When the `beneficiary_type` is `general`, the `beneficiaries` MUST be an empty list (`[]`).
+
+### 12.3. Asset Location Types <a id="eac-asset-location-types" href="#eac-asset-location-types" class="permalink">🔗</a>
+
+EAC object `asset_origination` and `asset_destination` values MUST be one of the following:
+
+* `grid` - The asset is located within the destination's local distribution grid.
+* `region` - The asset is located within the destination's regional transmission operators' service territory.
+
+### 12.4. Technology Types <a id="eac-technology-types" href="#eac-technology-types" class="permalink">🔗</a>
+
+EAC object `technology_type` values MUST be one of the following:
+
+* `solar` - The asset's energy generation is from solar (photovoltaic or thermal).
+* `wind` - The asset's energy generation is from wind.
+* `hydro` - The asset's energy generation is from hydroelectric.
+* `geothermal` - The asset's energy generation is from geothermal.
+* `biomass` - The asset's energy generation is from biomass.
+* `natural_gas` - The asset's energy generation is from natural gas.
+* `coal` - The asset's energy generation is from coal.
+* `oil` - The asset's energy generation is from fuel oil.
+
+### 12.5. EAC Values <a id="eac-values" href="#eac-values" class="permalink">🔗</a>
+
+EAC value objects are formatted as JSON objects and contain the following named values:
+
+* `eac_number` - _string or `null`_ - (REQUIRED) The EAC identifier that a Client or Customer sees in Server documentation, Customer documents, or other interfaces as the identifier for this EAC value, if available. If a Server does not have a Client or Customer-facing EAC identifier and the Client is not authorized to see the Server's internal EAC identifier for this EAC value, or the Server does not have identifiers stored for this EAC value, this value is `null`, and the EAC number for this value is assumed to be the value of the parent EAC object's `eac_number` (if any).
+* `issued` - _ISO8601 date_ - (REQUIRED) What day the EAC value was issued.
+* `retired` - _ISO8601 date or `null`_ - (REQUIRED) What day the EAC value was retired. If the EAC has not yet been retired, this value is `null`.
+* `start` - _ISO8601 datetime_ - (REQUIRED) When the EAC value period starts.
+* `end` - _ISO8601 datetime_ - (REQUIRED) When the EAC value period ends.
+* `unit` - _[Unit](#unit-types)_ - (REQUIRED) The unit of the EAC value's quantity.
+* `value` - _[Unit](#unit-types)_ - (REQUIRED) The quantity of the EAC value.
+
+### 12.6. Listing Energy Attribute Certificates <a id="eac-list" href="#eac-list" class="permalink">🔗</a>
 
 Clients may request to list EAC objects that they have access to by making an HTTPS `GET` request, authenticated with a valid Bearer `access_token` that is scoped to provide access to a set of EACs, to the `cds_eacs_api` URL included in the [Client Registration Response](https://connectivity.carbondataspec.org/specs/cdsc-wg1-02#registration-response) or [Clients API](https://connectivity.carbondataspec.org/specs/cdsc-wg1-02#client-format). The EAC object listing request responses are formatted as JSON objects and contain the following named values.
 
