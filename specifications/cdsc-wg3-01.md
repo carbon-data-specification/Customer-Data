@@ -44,7 +44,10 @@ This specification defines how utilities and other central entities ("Servers") 
     * [10.2. Listing Aggregations](#aggregation-list)  
 * [11. Usage Segments API](#usage-segments-api)  
     * [11.1. Usage Segment Object Format](#usage-segment-format)  
-    * [11.2. Listing Usage Segments](#usage-segment-list)  
+    * [11.2. Usage Segment Value Formats](#usage-segment-value-format)  
+    * [11.3. Usage Segment Value Set Format](#usage-segment-value-set-format)  
+    * [11.4. Usage Segment Value Object Format](#usage-segment-value-object-format)  
+    * [11.5. Listing Usage Segments](#usage-segment-list)  
 * [12. Energy Attribute Certificates API](#eac-api)  
     * [12.1. Energy Attribute Certificate Object Format](#eac-format)  
     * [12.2. Beneficiary Types](#eac-beneficiary-types)  
@@ -457,7 +460,41 @@ Usage Segment objects are formatted as JSON objects and contain the following na
 
 Servers MUST only inlude unique identifiers in `related_aggregations`, `related_accounts`, `related_servicecontracts`, `related_servicepoints`, `related_meterdevices`, and `related_billsections` lists MUST only include identifiers that the Client is authorized to see as scoped by their requesting `access_token`.
 
-### 11.2. Listing Usage Segments <a id="usage-segment-list" href="#usage-segment-list" class="permalink">🔗</a>
+### 11.2. Usage Segment Value Formats <a id="usage-segment-value-format" href="#usage-segment-value-format" class="permalink">🔗</a>
+
+The Usage Segment `format` field provides an ordered list of strings that denote the object types that are included in each Usage Segment `values` entry's [Value Set](#usage-segment-value-set-format). Usage Segments are organized this way so that the `format` listing essentially provides a "schema" of object types to expect when parsing the `values` Value Sets, which removes the need for each object in each Value Set to include repeated fields, such as an object type value.
+
+The following Usage Segment format strings are specified with their corresponding Value Set object types:
+
+* `usage_kwh` - [General Electric Usage in kWh object](#usage-segment-value-usage-kwh)
+* `usage_fwd_kwh` - [Forward Electric Usage in kWh object](#usage-segment-value-usage-fwd-kwh)
+* `usage_rev_kwh` - [Reverse Electric Usage in kWh object](#usage-segment-value-usage-rev-kwh)
+* `usage_net_kwh` - [Net Electric Usage in kWh object](#usage-segment-value-usage-net-kwh)
+* `aggregated_kwh` - [Aggregated Electric Usage in kWh object](#usage-segment-value-aggregated-kwh)
+* `demand_kw` - [Electric Demand in kW object](#usage-segment-value-demand-kw)
+* `water_m3` - [Water Usage in Cubic Meters object](#usage-segment-value-water-m3)
+* `water_gal` - [Water Usage in Gallons object](#usage-segment-value-water-gal)
+* `water_ft3` - [Water Usage in Cubic Feet object](#usage-segment-value-water-ft3)
+* `gas_therm` - [Natural Gas Usage in Therms object](#usage-segment-value-gas-therm)
+* `gas_ccf` - [Natural Gas Usage in CCF object](#usage-segment-value-gas-ccf)
+* `gas_mcf` - [Natural Gas Usage in MCF object](#usage-segment-value-gas-mcf)
+* `gas_mmbtu` - [Natural Gas Usage in mmBTU object](#usage-segment-value-gas-mmbtu)
+* `supply_mix` - [Electric Supply Mix object](#usage-segment-value-supply-mix)
+* `eacs` - [Energy Attribute Certificates object](#usage-segment-value-eacs)
+
+Value format strings MAY be repeated in the `format` listing, indicating there are multiple value objects in the Value Set for that format. This is useful when a Server provides multiple variations of optional fields for the same type of value.
+
+Extensions to this specification MAY further define additional formats other that what is listed above. Client MUST 
+
+### 11.3. Usage Segment Value Set Format <a id="usage-segment-value-set-format" href="#usage-segment-value-set-format" class="permalink">🔗</a>
+
+The Usage Segment `values` field provides an ordered list of Value Set entries. A Value Set entry is an array that contains an ordered list of [Value objects](#usage-segment-value-object-format), where the type of each Value object which is defined by the order of the `format` listing.
+
+Each Value Set entry in the `values` listing represents an increment of `interval` seconds in the Usage Segment from the `segment_start`. For example, if a Usage Segment has a `segment_start` of `2025-01-01T00:00:00Z`, an `interval` of `900`, and four Value Set entries in the `values`, the Value Set entries would represent the each 15 minute period of a one hour segment (`2025-01-01T00:00:00Z - 2025-01-01T00:15:00Z`, `2025-01-01T00:15:00Z - 2025-01-01T00:30:00Z`, `2025-01-01T00:30:00Z - 2025-01-01T00:45:00Z`, and `2025-01-01T00:45:00Z - 2025-01-01T01:00:00Z`).
+
+If a Value object is not available for a specific Value Set. Servers MUST replace the item in the Value Set with `null`.
+
+### 11.5. Listing Usage Segments <a id="usage-segment-list" href="#usage-segment-list" class="permalink">🔗</a>
 
 Clients may request to list Usage Segment objects that they have access to by making an HTTPS `GET` request, authenticated with a valid Bearer `access_token` that is scoped to provide access to a set of Usage Segments, to the `cds_usagesegments_api` URL included in the [Client Registration Response](https://connectivity.carbondataspec.org/specs/cdsc-wg1-02#registration-response) or [Clients API](https://connectivity.carbondataspec.org/specs/cdsc-wg1-02#client-format). The Usage object listing request responses are formatted as JSON objects and contain the following named values.
 
