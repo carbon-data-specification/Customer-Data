@@ -48,10 +48,9 @@ This specification defines how utilities and other central entities ("Servers") 
 * [12. Energy Attribute Certificates API](#eac-api)  
     * [12.1. Energy Attribute Certificate Object Format](#eac-format)  
     * [12.2. Beneficiary Types](#eac-beneficiary-types)  
-    * [12.3. Asset Location Types](#eac-asset-location-types)  
-    * [12.4. Technology Types](#eac-technology-types)  
-    * [12.5. EAC Values](#eac-values)  
-    * [12.6. Listing Energy Attribute Certificates](#eac-list)  
+    * [12.3. Listing Energy Attribute Certificates](#eac-list)  
+    * [12.4. Server Metadata for EAC Data Formats](#eac-data-formats-metadata)  
+    * [12.5. EAC Data Format Description Object](#eac-data-format-descriptions)  
 * [13. Extensions](#extensions)  
 * [14. Examples](#examples)  
 * [15. Security Considerations](#security)  
@@ -494,22 +493,13 @@ EAC objects are formatted as JSON objects and contain the following named values
 * `cds_eac_id` - _string_ - (REQUIRED) The Server's unique identifier for this EAC object.
 * `cds_created` - _ISO8601 datetime_ - (REQUIRED) When the Server created this EAC object.
 * `cds_modified` - _ISO8601 datetime_ - (REQUIRED) When the Server last modified this EAC object.
-* `eac_number` - _string or `null`_ - (REQUIRED) The EAC identifier that a Client or Customer sees in Server documentation, Customer documents, or other interfaces as the identifier for this EAC, if available. If a Server does not have a Client or Customer-facing EAC identifier and the Client is not authorized to see the Server's internal EAC identifier for this EAC, or the Server does not have identifiers stored for this EAC, this value is `null`.
-* `source_id` - _string_ - (REQUIRED) The EAC's source identifier. The EAC source is defined as the organization who owns issuance of the EAC.
-* `source_name` - _string_ - (REQUIRED) The EAC source's organization name.
-* `destination_id` - _string_ - (REQUIRED) The EAC's destination identifier. The EAC destination is defined as the organization responsible for retirement of the EAC.
-* `destination_name` - _string_ - (REQUIRED) The EAC destination's organization name. For utilities that are operating their own Servers, this value is typically the name of the utility.
-* `beneficiary_type` - _[BeneficiaryType](#eac-beneficiary-types)_ - (REQUIRED) The type of beneficiary to which this EAC is applied (e.g. an individual customer's PPA.
-* `beneficiaries` - _Array[string]_ - (REQUIRED) The list of Customer identifier, rate plan, or program name to allocate the EAC.
-* `asset_id` - _string_ - (REQUIRED) The generation asset's identifier.
-* `asset_origination` - _[AssetLocationType](#eac-asset-location-types)_ - (REQUIRED) From where the asset's generation is originated.
-* `asset_destination` - _[AssetLocationType](#eac-asset-location-types)_ - (REQUIRED) To where the asset's generation is destined.
-* `technology_type` - _[TechnologyType](#eac-technology-types)_ - (REQUIRED) The type of technology used for generating the EAC.
-* `emissions_factor_direct` - _decimal_ - (REQUIRED) <span style="background-color:yellow">TODO:definition</span>.
-* `emissions_factor_lca` - _decimal_ - (REQUIRED) <span style="background-color:yellow">TODO:definition</span>.
-* `period_start` - _ISO8601 datetime_ - (REQUIRED) When the EAC period started.
-* `period_end` - _ISO8601 datetime_ - (REQUIRED) When the EAC period ended or will end.
-* `values` - _Array[[EnergyAttributeValues](#eac-values)]_
+* `beneficiary_type` - _[BeneficiaryType](#eac-beneficiary-types)_ - (REQUIRED) The type of beneficiary to which this EAC is applied.
+* `beneficiaries` - _Array[string]_ - (REQUIRED) The list of identifiers to which the EAC is allocated, based on the `beneficiary_type`.
+* `eac_numbers` - _Array[string]_ - (REQUIRED) A list of EAC identifier that a Client or Customer sees in Server documentation, Customer documents, Certificate Registries, or other interfaces as the identifier for this EAC, if available. If a Server does not have a Client or Customer-facing EAC identifier and the Client is not authorized to see the Server's internal EAC identifier for this EAC, or the Server does not have identifiers stored for this EAC, this value is an emtpy list (`[]`).
+* `eac_format` - _string_ - (REQUIRED) The format of the EAC data linked in the `ead_data_url`. Possible values of this format MUST be included in the Server Metadata's [`cds_eac_formats`](#eac-data-formats-metadata) list. Clients MUST ignore `eac_format` values that they do not know how to interpret.
+* `eac_data_url` - _URL_ - (REQUIRED) A link to an endpoint containing the EAC's data (e.g. asset identifiers, values, locations, etc.). This is a URL, rather than a structured object because there are many EAC formats available across regions, registries, and jursidictions, and rather than this specification attempting to accomodate all EAC formats, Servers only need to link to the EAC data in the format they have the data accessible. URL endpoints provided in this field MUST be accessible under the same authentication and security requirements as accessing this specification's EAC API endpoints. URLs may link to an individual formatted file, compressed archive files, the base URL to a set of APIs, or any other type of data location, as long as the data is formatted in the manner described by the `eac_format` field. In situations where the URL is the base URL to another set of APIs that contain the EAC data, Servers MUST scope the access to that API to only the relevant EAC data for the specific Grant that the `access_token` provides.
+* `period_start` - _ISO8601 datetime_ - (REQUIRED) When the EAC coverage time period started.
+* `period_end` - _ISO8601 datetime_ - (REQUIRED) When the EAC coverage time period ended or will end.
 
 ### 12.2. Beneficiary Types <a id="eac-beneficiary-types" href="#eac-beneficiary-types" class="permalink">🔗</a>
 
@@ -522,39 +512,7 @@ EAC object `beneficiary_type` values MUST be one of the following:
 * `program` - Within the EAC's destination, the EAC is further applied to a special program in which customers are participating. When the `beneficiary_type` is `program`, the `beneficiaries` MUST have the value of the relevant `program_id` values. NOTE: listed `program_id` values MUST be authorized to be visible to the Client, so while the destination MAY allocate beneficiaries of the EAC to multiple special programs, only the rate plans that are available to be seen as part of the Client's authorization MUST be listed.
 * `general` - Within the EAC's destination, the EAC is applied generally to the base energy usage profile for all customers. When the `beneficiary_type` is `general`, the `beneficiaries` MUST be an empty list (`[]`).
 
-### 12.3. Asset Location Types <a id="eac-asset-location-types" href="#eac-asset-location-types" class="permalink">🔗</a>
-
-EAC object `asset_origination` and `asset_destination` values MUST be one of the following:
-
-* `grid` - The asset is located within the destination's local distribution grid.
-* `region` - The asset is located within the destination's regional transmission operators' service territory.
-
-### 12.4. Technology Types <a id="eac-technology-types" href="#eac-technology-types" class="permalink">🔗</a>
-
-EAC object `technology_type` values MUST be one of the following:
-
-* `solar` - The asset's energy generation is from solar (photovoltaic or thermal).
-* `wind` - The asset's energy generation is from wind.
-* `hydro` - The asset's energy generation is from hydroelectric.
-* `geothermal` - The asset's energy generation is from geothermal.
-* `biomass` - The asset's energy generation is from biomass.
-* `natural_gas` - The asset's energy generation is from natural gas.
-* `coal` - The asset's energy generation is from coal.
-* `oil` - The asset's energy generation is from fuel oil.
-
-### 12.5. EAC Values <a id="eac-values" href="#eac-values" class="permalink">🔗</a>
-
-EAC value objects are formatted as JSON objects and contain the following named values:
-
-* `eac_number` - _string or `null`_ - (REQUIRED) The EAC identifier that a Client or Customer sees in Server documentation, Customer documents, or other interfaces as the identifier for this EAC value, if available. If a Server does not have a Client or Customer-facing EAC identifier and the Client is not authorized to see the Server's internal EAC identifier for this EAC value, or the Server does not have identifiers stored for this EAC value, this value is `null`, and the EAC number for this value is assumed to be the value of the parent EAC object's `eac_number` (if any).
-* `issued` - _ISO8601 date_ - (REQUIRED) What day the EAC value was issued.
-* `retired` - _ISO8601 date or `null`_ - (REQUIRED) What day the EAC value was retired. If the EAC has not yet been retired, this value is `null`.
-* `start` - _ISO8601 datetime_ - (REQUIRED) When the EAC value period starts.
-* `end` - _ISO8601 datetime_ - (REQUIRED) When the EAC value period ends.
-* `unit` - _[Unit](#unit-types)_ - (REQUIRED) The unit of the EAC value's quantity.
-* `value` - _[Unit](#unit-types)_ - (REQUIRED) The quantity of the EAC value.
-
-### 12.6. Listing Energy Attribute Certificates <a id="eac-list" href="#eac-list" class="permalink">🔗</a>
+### 12.3. Listing Energy Attribute Certificates <a id="eac-list" href="#eac-list" class="permalink">🔗</a>
 
 Clients may request to list EAC objects that they have access to by making an HTTPS `GET` request, authenticated with a valid Bearer `access_token` that is scoped to provide access to a set of EACs, to the `cds_eacs_api` URL included in the [Client Registration Response](https://connectivity.carbondataspec.org/specs/cdsc-wg1-02#registration-response) or [Clients API](https://connectivity.carbondataspec.org/specs/cdsc-wg1-02#client-format). The EAC object listing request responses are formatted as JSON objects and contain the following named values.
 
@@ -565,11 +523,27 @@ Clients may request to list EAC objects that they have access to by making an HT
 Servers MUST support Clients adding any of the following URL parameters to the `GET` request, which will filter the list of EACs to be the intersection of results for each of the URL parameters filters:
 
 * `cds_eac_ids` - A space-separated list of `cds_eac_id` values for which the Servers MUST filter the EACs.
-* `eac_numbers` - A space-separated list of `eac_number` values for which the Servers MUST filter the EACs.
-* `before` - An ISO8601 datetime for which the Server MUST filter the EAC object `issuance_date` to values that are on or before this date.
-* `after` - An ISO8601 datetime for which the Server MUST filter the EAC object `issuance_date` to values that are on or after this date.
+* `eac_numbers` - A space-separated list of `eac_numbers` values for which the Servers MUST filter the EACs.
+* `beneficiaries` - A space-separated list of `beneficiaries` values for which the Servers MUST filter the EACs. Since `beneficiaries` contains values based on the `beneficiary_type`, different types of beneficiaries may have the same value (e.g. `customer_number` and `account_number` may be the same). For listings returned using this filter parameter, Clients SHOULD check the `beneficiary_type` for each returned result to filter out any results that may have been inadvertent inclusions due to value collision on the Server.
+* `before` - An ISO8601 datetime for which the Server MUST filter the EAC object `period_start` to values that are on or before this datetime.
+* `after` - An ISO8601 datetime for which the Server MUST filter the EAC object `period_end` to values that are on or after this datetime.
 
-Listings of EACs MUST be ordered in alphanumeric order by `eac_number`. In situations where relevant EACs have the same `eac_number`, those EACs with the same `eac_number` are further ordered in reverse chronological order by `issuance_date`, where the most recently issued EAC is first.
+Listings of EACs MUST be ordered in reverse chronological order by `period_start`, where the most recently started EAC is first. In situations where relevant EACs have the same `period_start`, those EACs with the same `period_start` are further ordered in reverse chronological order by `cds_created`, where the most recently created EAC is first. In situations where relevant EACs have the same `period_start` and `cds_created`, those EACs with the same `period_start` and `cds_created` are further ordered in alphanumeric order by `cds_eac_id`.
+
+### 12.4. Server Metadata for EAC Data Formats <a id="eac-data-formats-metadata" href="#eac-data-formats-metadata" class="permalink">🔗</a>
+
+Servers that offer [scopes](#authorization-scopes) providing access to the [EAC API](#eac-api) MUST include the following fields in the [Authorization Server Metadata](https://connectivity.carbondataspec.org/specs/cdsc-wg1-02#auth-server-metadata-format) object:
+
+* `cds_eac_formats` - _Map[[EACDataFormatDescription](#eac-data-format-descriptions)]_ - (REQUIRED) An object providing additional information about each EAC data format value that may be provided as the [EAC object](#eac-format) `eac_format`, with the [EAC Data Format Description's](#eac-data-format-descriptions) `id` as the keys of the object and values being the [EAC Data Format Description](#eac-data-format-descriptions) object itself.
+
+### 12.5. EAC Data Format Description Object <a id="eac-data-format-descriptions" href="#eac-data-format-descriptions" class="permalink">🔗</a>
+
+EAC Data Format Descriptions objects are formatted as JSON objects and contain the following named values:
+
+* `id` - _string_ - (REQUIRED) The identifier of the EAC data format that is set as the [EAC object](#eac-format) `eac_format` value when the EAC object links to EAC data in the `eac_data_url` that is structured in this format.
+* `name` - _string_ - (REQUIRED) A human-readable name of the EAC data format (e.g. "Energy Tag API").
+* `description` - _string_ - (REQUIRED) A human-readable description of the EAC data format.
+* `documentation` - _URL_ - (REQUIRED) A link to developer documentation on the EAC data format.
 
 ## 13. Extensions <a id="extensions" href="#extensions" class="permalink">🔗</a>
 
