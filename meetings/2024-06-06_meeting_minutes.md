@@ -1,5 +1,7 @@
 # CDSC WG1 (Customer Data) Meeting 2024-06-06
 
+Recording: https://zoom.us/rec/share/4Tw4GDoS-PkKSDUrvX67Zv0ktlBvDqt-rXG4RdBu9sYmEn0Hx3aezYyHzVLLkMZr.itfZ2kyN6gu82X7m
+
 ## Agenda
 * Welcome
 * Review how EACs fit into the Customer Data specification (CDSC-WG1-03):

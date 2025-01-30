@@ -1,5 +1,7 @@
 # Joint CDSC WG1 & WG3 (Connectivity and Customer Data) Meeting 2024-08-08
 
+Recording: https://zoom.us/rec/share/0vfrAvRm5VMWiJkcU1zf8BBeQLFPXyhdIDzbXdGWd-yRclPfCpqXCS35FTDAeNsq.fIzETlgx3bkTekJ5
+
 ## Agenda
 * Welcome
 * Review examples of Usage Segments API for various situations

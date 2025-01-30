@@ -1,5 +1,7 @@
 # Joint CDSC WG1 & WG3 (Connectivity and Customer Data) Meeting 2024-09-12
 
+Recording: https://zoom.us/rec/share/Bev0VZAZB4Ka71vzWev7uL2oKl9MGFpVEwS6ScUoeAUMkloq5Uxm9oVXDDOZHXoM.wpfiZErK5PpBOwX2
+
 ## Agenda
 * Welcome
 * Takeaways from LF Energy Summit

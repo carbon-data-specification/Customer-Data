@@ -1,5 +1,7 @@
 # CDSC WG1 (Customer Data) Meeting 2024-05-09
 
+Recording: https://zoom.us/rec/share/mcvtnpiB1VblAUBHPcoX9S57nnUqj67VPYpMaFMPZbCBBJ_CnsVoTfvTeKrh4afN.KywKAV9Rv2YrIc2_
+
 ## Agenda
 * Welcome
 * Planning mid-2024 schedule (webinars, presentations, etc.)

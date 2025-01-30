@@ -1,5 +1,7 @@
 # Joint CDSC WG1 & WG3 (Connectivity and Customer Data) Meeting 2024-09-26
 
+Recording: https://zoom.us/rec/share/NI-B9TI1Y4jqzV19iIWwgC_8sVidmqpUcuNeHuvl0JBytuRbb6p1CGJAJFH9tbfn.W5k_rk7pmFaxMM5V
+
 ## Agenda
 * Welcome
 * EAC object refactor: Moving data to external resource via `eac_data_url` and `eac_format`

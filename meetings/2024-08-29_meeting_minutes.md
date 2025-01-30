@@ -1,5 +1,7 @@
 # Joint CDSC WG1 & WG3 (Connectivity and Customer Data) Meeting 2024-08-29
 
+Recording: https://zoom.us/rec/share/nDHThPR5NQeIgRjjg8llayoySNeF96L1OMBB20dpJ4xfpAcJpGzFzihhqTMqYBgJ.5hP0hXVK_LxwqQIu
+
 ## Agenda
 * Welcome
 * Discuss EAC refactoring

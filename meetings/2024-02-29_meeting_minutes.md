@@ -1,5 +1,7 @@
 # CDSC WG1 (Customer Data) Meeting 2024-02-29
 
+Recording: https://zoom.us/rec/share/51Kqj1WsEb4qewRqbnhTum9Bv20sDPVY4AnGrcnfhVxQjatWPrZavV8lktNWdICw.Zf19bcMPimSpAZqy
+
 ## Agenda
 * Welcome
 * Review progress on CDSC-WG1-02 (Client Registration) specification

@@ -1,5 +1,7 @@
 # Joint CDSC WG1 & WG3 (Connectivity and Customer Data) Meeting 2024-10-24
 
+Recording: https://zoom.us/rec/share/kgvK8f4HoISLO3JgrZBxKaCb2bo7DU5uozu9cG-k0hO03hudolY5Dg5YBXSTbM6j.ggpOwiuNWNP6hXC1
+
 ## Agenda
 * Welcome
 * Demo and tour of experimental CDS Server implementation!

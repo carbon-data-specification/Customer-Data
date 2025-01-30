@@ -1,5 +1,7 @@
 # CDSC WG1 (Customer Data) Meeting 2024-04-25
 
+Recording: https://zoom.us/rec/share/ag-Z8gqt4F4SjdJ52KAEg8qE-g_nX8cYQteb0tW3HfYf1O-g9QW9lv9ZT4HZSKb8.QT7qmwjLI9tRippy
+
 ## Agenda
 * Welcome
 * Review comments on the CDSC-WG1-03 (Customer Data) pull request

@@ -1,5 +1,7 @@
 # CDSC WG1 (Customer Data) Meeting 2024-01-18
 
+Recording: https://zoom.us/rec/share/ZyZUGzpUV9NfEZn-Imhml6YT05P_i-qyYcW_He5hcUioOGmAAJeJYLyA_68N-f6p.EbqoX5rgCaFp4NRS
+
 ## Agenda
 * Welcome
 * Recap of 2023

@@ -1,5 +1,7 @@
 # CDSC WG1 (Customer Data) Meeting 2024-06-27
 
+Recording: https://zoom.us/rec/share/kEZe8zWKN_jxp4Y089giSxC7qc0uwziS3L5WINm9emGlYLKtYZnt84B5cIpvCCjD.KMIgJ6sIQPqVtA_8
+
 ## Agenda
 * Welcome
 * Timeline and plans for splitting WG1 into WG1 ("Connectivity") and WG3 ("Customer Data")

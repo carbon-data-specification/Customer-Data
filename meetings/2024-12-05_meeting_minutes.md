@@ -1,5 +1,7 @@
 # Joint CDSC WG1 & WG3 (Connectivity and Customer Data) Meeting 2024-12-05
 
+Recording: https://zoom.us/rec/share/bbpfMG4W7NtpzqqAU04fZWIBgVhLlPsYF3uzB53lHendhO-w69FfpjO6mg8G1-3X.dJdMTOhEOzn4mIzS
+
 ## Agenda
 * Welcome
 * Connectivty WG - Issue #1 (New Use Cases)
